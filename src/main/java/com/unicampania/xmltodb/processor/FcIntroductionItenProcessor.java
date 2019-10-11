@@ -1,6 +1,6 @@
 package com.unicampania.xmltodb.processor;
 
-import com.unicampania.xmltodb.model.Fclass;
+import com.unicampania.xmltodb.model.fclass.Fclass;
 import org.springframework.batch.item.ItemProcessor;
 
 public class FcIntroductionItenProcessor implements ItemProcessor<Fclass, Fclass> {

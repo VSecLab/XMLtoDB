@@ -1,6 +1,7 @@
 package com.unicampania.xmltodb.config;
 
-import com.unicampania.xmltodb.model.Fclass;
+import com.unicampania.xmltodb.config.fclass_preparedstatmentsetter.*;
+import com.unicampania.xmltodb.model.fclass.Fclass;
 import com.unicampania.xmltodb.processor.FcIntroductionItenProcessor;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
