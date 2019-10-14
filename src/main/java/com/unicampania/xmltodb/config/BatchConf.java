@@ -1,8 +1,11 @@
 package com.unicampania.xmltodb.config;
 
+import com.unicampania.xmltodb.config.aclass_preparedstatmentsetter.AClassPreparedStatmentSetter;
 import com.unicampania.xmltodb.config.fclass_preparedstatmentsetter.*;
+import com.unicampania.xmltodb.model.aclass.AClass;
 import com.unicampania.xmltodb.model.fclass.Fclass;
 import com.unicampania.xmltodb.processor.FcIntroductionItenProcessor;
+import com.unicampania.xmltodb.processor.ProcessorAClass;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
@@ -20,6 +23,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 import javax.sql.DataSource;
+import java.security.acl.Acl;
 import java.util.Arrays;
 
 @Configuration
@@ -40,9 +44,12 @@ public class BatchConf {
         return new FcIntroductionItenProcessor();
     }
 
+    @Bean
+    public ProcessorAClass processorAClass() { return new ProcessorAClass(); }
+
 
     @Bean
-    ItemReader<Fclass> reader() {
+    ItemReader<Fclass> readerFClass() {
         StaxEventItemReader<Fclass> reader = new StaxEventItemReader<Fclass>();
         reader.setResource(new ClassPathResource("fclass.xml"));
         reader.setFragmentRootElementName("f-class");
@@ -53,11 +60,33 @@ public class BatchConf {
     }
 
     @Bean
+    ItemReader<AClass> readerAClass() {
+        StaxEventItemReader<AClass> reader = new StaxEventItemReader<AClass>();
+        reader.setResource(new ClassPathResource("aclass.xml"));
+        reader.setFragmentRootElementName("a-class");
+        Jaxb2Marshaller publicFigMarshaller = new Jaxb2Marshaller();
+        publicFigMarshaller.setClassesToBeBound(AClass.class);
+        reader.setUnmarshaller(publicFigMarshaller);
+        System.out.println(reader);
+        return reader;
+
+    }
+
+    @Bean
     public JdbcBatchItemWriter<Fclass> writerFclass() {
         JdbcBatchItemWriter<Fclass> writer = new JdbcBatchItemWriter<Fclass>();
         writer.setDataSource(dataSource);
         writer.setSql("INSERT INTO fclass(id,name) VALUES(?,?) ON DUPLICATE KEY UPDATE id = ?");
         writer.setItemPreparedStatementSetter(new FclassPreparedStatmentSetter());
+        return writer;
+    }
+
+    @Bean
+    public JdbcBatchItemWriter<AClass> writerAClass() {
+        JdbcBatchItemWriter<AClass> writer = new JdbcBatchItemWriter<AClass>();
+        writer.setDataSource(dataSource);
+        writer.setSql("INSERT INTO aclass(id, name) VALUES(?,?)");
+        writer.setItemPreparedStatementSetter(new AClassPreparedStatmentSetter());
         return writer;
     }
 
@@ -293,10 +322,32 @@ public class BatchConf {
 
     @Bean
     public Step step1() {
-        return stepBuilderFactory.get("step1").<Fclass, Fclass>chunk(100).reader(reader()).processor(processor()).writer(compositeItemWriter()).build();
+        return stepBuilderFactory.get("step1").<Fclass, Fclass>chunk(100)
+                .reader(readerFClass())
+                .processor(processor())
+                .writer(compositeItemWriter())
+                .build();
     }
 
+
     @Bean
+    public Step step2() {
+        return stepBuilderFactory.get("step2").<AClass, AClass>chunk(100)
+                .reader(readerAClass())
+                .processor(processorAClass())
+                .writer(writerAClass())
+                .build();
+    }
+
+
+
+    @Bean
+    public Job exportAClassJob() {
+        return jobBuilderFactory.get("importAClassJob").incrementer(new RunIdIncrementer()).flow(step2()).end().build();
+    }
+
+
+   @Bean
     public Job exportPerosnJob() {
         return jobBuilderFactory.get("importPersonJob").incrementer(new RunIdIncrementer()).flow(step1()).end().build();
     }
