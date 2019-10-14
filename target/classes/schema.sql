@@ -261,7 +261,7 @@ DROP TABLE IF EXISTS aclass;
 CREATE TABLE aclass(
 
     id VARCHAR(4) NOT NULL PRIMARY KEY,
-    name VARCHAR(400)
+    name VARCHAR(100)
 
 ) ;
 

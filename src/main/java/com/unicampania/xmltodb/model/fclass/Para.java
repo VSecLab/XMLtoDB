@@ -1,6 +1,7 @@
 package com.unicampania.xmltodb.model.fclass;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;

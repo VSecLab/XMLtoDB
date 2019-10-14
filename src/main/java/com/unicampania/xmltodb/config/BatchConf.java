@@ -1,6 +1,7 @@
 package com.unicampania.xmltodb.config;
 
 import com.unicampania.xmltodb.config.aclass_preparedstatmentsetter.AClassPreparedStatmentSetter;
+import com.unicampania.xmltodb.config.aclass_preparedstatmentsetter.AcIntroductionPreparedStatmentSetter;
 import com.unicampania.xmltodb.config.fclass_preparedstatmentsetter.*;
 import com.unicampania.xmltodb.model.aclass.AClass;
 import com.unicampania.xmltodb.model.fclass.Fclass;
@@ -98,6 +99,15 @@ public class BatchConf {
         writer.setItemPreparedStatementSetter(new FcIntroductionPreparedStatmentSetter());
         return writer;
 
+    }
+
+    @Bean
+    public JdbcBatchItemWriter<AClass> writerAcIntroduction() {
+        JdbcBatchItemWriter<AClass> writer = new JdbcBatchItemWriter<AClass>();
+        writer.setDataSource(dataSource);
+        writer.setSql("INSERT INTO acintroduction(type, id, para, ida) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE id = ?");
+        writer.setItemPreparedStatementSetter(new AcIntroductionPreparedStatmentSetter());
+        return writer;
     }
 
 
@@ -309,7 +319,6 @@ public class BatchConf {
         return writer;
     }
 
-
     @Bean
     public JdbcBatchItemWriter<Fclass> writerFeAssignmentNotes() {
         JdbcBatchItemWriter<Fclass> writer = new JdbcBatchItemWriter<Fclass>();
@@ -329,17 +338,14 @@ public class BatchConf {
                 .build();
     }
 
-
     @Bean
     public Step step2() {
         return stepBuilderFactory.get("step2").<AClass, AClass>chunk(100)
                 .reader(readerAClass())
                 .processor(processorAClass())
-                .writer(writerAClass())
+                .writer(compositeItemWriterAClass())
                 .build();
     }
-
-
 
     @Bean
     public Job exportAClassJob() {
@@ -350,6 +356,15 @@ public class BatchConf {
    @Bean
     public Job exportPerosnJob() {
         return jobBuilderFactory.get("importPersonJob").incrementer(new RunIdIncrementer()).flow(step1()).end().build();
+    }
+
+
+    public CompositeItemWriter<AClass> compositeItemWriterAClass() {
+        CompositeItemWriter writer = new CompositeItemWriter();
+        writer.setDelegates(Arrays.asList(
+                writerAClass(),
+                writerAcIntroduction()));
+        return writer;
     }
 
 
