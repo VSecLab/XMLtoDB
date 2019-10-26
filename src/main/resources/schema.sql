@@ -250,10 +250,6 @@ CREATE TABLE feassignmentnotes(
 
 
 
-
-
-
-
 DROP TABLE IF EXISTS acintroduction;
 DROP TABLE IF EXISTS aclass;
 

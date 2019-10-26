@@ -19,12 +19,12 @@ public class FcoUserNotesPreparedStatmentSetter implements ItemPreparedStatement
                         ps.setString(2, item.getFfamilyList().get(i).getFComponentList().get(j).getId().concat(String.valueOf(k)));
                         ps.setString(5, item.getFfamilyList().get(i).getFComponentList().get(j).getId().concat(String.valueOf(k)));
                     } else {
-                        ps.setString(2, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getId());
-                        ps.setString(5, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getId());
+                        ps.setString(2, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getId().toUpperCase());
+                        ps.setString(5, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getId().toUpperCase());
                     }
                     ps.setString(1, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getType());
-                    ps.setString(3, String.valueOf(item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getCombo()));
-                    ps.setString(4, item.getFfamilyList().get(i).getFComponentList().get(j).getId());
+                    ps.setString(3, String.valueOf(item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getCombo()).replace("[", "").replace("]", "").replaceAll("\r\n", " ").trim());
+                    ps.setString(4, item.getFfamilyList().get(i).getFComponentList().get(j).getId().toUpperCase());
                     ps.addBatch();
                 }
 

@@ -16,10 +16,10 @@ public class FfUserNotesPreparedStatmentSetter implements ItemPreparedStatementS
             for (int j = 0; j < item.getFfamilyList().get(i).getFfUserNotes().getP().size(); j++) {
 
                 ps.setString(1, item.getFfamilyList().get(i).getFfUserNotes().getP().get(j).getType());
-                ps.setString(2, item.getFfamilyList().get(i).getFfUserNotes().getP().get(j).getId());
-                ps.setString(3, String.valueOf(item.getFfamilyList().get(i).getFfUserNotes().getP().get(j).getCombo()));
-                ps.setString(4, item.getFfamilyList().get(i).getId());
-                ps.setString(5, item.getFfamilyList().get(i).getFfUserNotes().getP().get(j).getId());
+                ps.setString(2, item.getFfamilyList().get(i).getFfUserNotes().getP().get(j).getId().toUpperCase());
+                ps.setString(3, String.valueOf(item.getFfamilyList().get(i).getFfUserNotes().getP().get(j).getCombo()).replace("[", "").replace("]", "").replaceAll("\r\n", " ").trim());
+                ps.setString(4, item.getFfamilyList().get(i).getId().toUpperCase());
+                ps.setString(5, item.getFfamilyList().get(i).getFfUserNotes().getP().get(j).getId().toUpperCase());
                 ps.addBatch();
 
             }

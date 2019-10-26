@@ -14,10 +14,10 @@ public class SubClauseParaPreparedStatmentSetter implements ItemPreparedStatemen
             for (int i = 0; i < item.getFcInformativeNotes().getSubClause().getP().size(); i++) {
 
                 ps.setString(1, item.getFcInformativeNotes().getSubClause().getP().get(i).getType());
-                ps.setString(2, item.getFcInformativeNotes().getSubClause().getP().get(i).getId());
+                ps.setString(2, item.getFcInformativeNotes().getSubClause().getP().get(i).getId().toUpperCase());
                 ps.setString(3, String.valueOf(item.getFcInformativeNotes().getSubClause().getP().get(i).getValue()));
-                ps.setString(4, item.getFcInformativeNotes().getSubClause().getId());
-                ps.setString(5, item.getFcInformativeNotes().getSubClause().getP().get(i).getId());
+                ps.setString(4, item.getFcInformativeNotes().getSubClause().getId().toUpperCase());
+                ps.setString(5, item.getFcInformativeNotes().getSubClause().getP().get(i).getId().toUpperCase());
                 ps.addBatch();
             }
         }

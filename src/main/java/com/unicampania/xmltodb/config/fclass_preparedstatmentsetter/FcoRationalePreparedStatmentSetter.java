@@ -22,10 +22,10 @@ public class FcoRationalePreparedStatmentSetter implements ItemPreparedStatement
                 } else
 
                     ps.setString(1, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoRationale().getP().getType());
-                ps.setString(2, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoRationale().getP().getId());
-                ps.setString(3, String.valueOf(item.getFfamilyList().get(i).getFComponentList().get(j).getFcoRationale().getP().getCombo()));
-                ps.setString(4, item.getFfamilyList().get(i).getFComponentList().get(j).getId());
-                ps.setString(5, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoRationale().getP().getId());
+                ps.setString(2, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoRationale().getP().getId().toUpperCase());
+                ps.setString(3, String.valueOf(item.getFfamilyList().get(i).getFComponentList().get(j).getFcoRationale().getP().getCombo()).replace("[", "").replace("]", "").replaceAll("\r\n", " ").trim());
+                ps.setString(4, item.getFfamilyList().get(i).getFComponentList().get(j).getId().toUpperCase());
+                ps.setString(5, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoRationale().getP().getId().toUpperCase());
                 ps.addBatch();
             }
         }

@@ -20,15 +20,15 @@ public class ItemBoldPreparedStatmentSetter implements ItemPreparedStatementSett
                             ps.setString(1, "");
                             ps.setString(2, "");
                             ps.setString(3, "");
-                            ps.setString(4, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getId());
+                            ps.setString(4, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getId().toUpperCase());
                             ps.setString(5, "");
                         } else {
                             for (int m = 0; m < item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getLists().size(); m++) {
                                 for (int n = 0; n < item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getLists().get(m).getItem().size(); n++) {
                                     ps.setString(1, String.valueOf(n));
-                                    ps.setString(2, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getLists().get(m).getItem().get(n).getId());
+                                    ps.setString(2, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getLists().get(m).getItem().get(n).getId().toUpperCase());
                                     ps.setString(3, String.valueOf(item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getLists().get(m).getItem().get(n).getBoldItem()));
-                                    ps.setString(4, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getId());
+                                    ps.setString(4, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getId().toUpperCase());
                                     ps.setString(5, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getLists().get(m).getItem().get(n).getId());
                                     ps.addBatch();
                                 }

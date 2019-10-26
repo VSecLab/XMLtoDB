@@ -20,10 +20,10 @@ public class FfEvaluatorNotesPreparedStatmentSetter implements ItemPreparedState
                 ps.setString(5, "");
             } else {
                 ps.setString(1, item.getFfamilyList().get(i).getFfEvaluatorNotes().getP().getType());
-                ps.setString(2, item.getFfamilyList().get(i).getFfEvaluatorNotes().getP().getId());
-                ps.setString(3, String.valueOf(item.getFfamilyList().get(i).getFfEvaluatorNotes().getP().getCombo()));
-                ps.setString(4, item.getFfamilyList().get(i).getId());
-                ps.setString(5, item.getFfamilyList().get(i).getFfEvaluatorNotes().getP().getId());
+                ps.setString(2, item.getFfamilyList().get(i).getFfEvaluatorNotes().getP().getId().toUpperCase());
+                ps.setString(3, String.valueOf(item.getFfamilyList().get(i).getFfEvaluatorNotes().getP().getCombo()).replace("[", "").replace("]", "").replaceAll("\r\n", " ").trim());
+                ps.setString(4, item.getFfamilyList().get(i).getId().toUpperCase());
+                ps.setString(5, item.getFfamilyList().get(i).getFfEvaluatorNotes().getP().getId().toUpperCase());
                 ps.addBatch();
             }
         }

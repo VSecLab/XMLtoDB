@@ -13,10 +13,10 @@ public class FfamilyPreparedStatmentSetter implements ItemPreparedStatementSette
 
         for (int i = 0; i < item.getFfamilyList().size(); i++) {
 
-            ps.setString(1, item.getFfamilyList().get(i).getId());
+            ps.setString(1, item.getFfamilyList().get(i).getId().toUpperCase());
             ps.setString(2, item.getFfamilyList().get(i).getName());
-            ps.setString(3, item.getId());
-            ps.setString(4, item.getFfamilyList().get(i).getId());
+            ps.setString(3, item.getId().toUpperCase());
+            ps.setString(4, item.getFfamilyList().get(i).getId().toUpperCase());
             ps.addBatch();
 
         }

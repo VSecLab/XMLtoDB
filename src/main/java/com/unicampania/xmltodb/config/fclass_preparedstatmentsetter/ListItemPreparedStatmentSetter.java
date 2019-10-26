@@ -34,12 +34,12 @@ public class ListItemPreparedStatmentSetter implements ItemPreparedStatementSett
                                     ps.setString(2, String.valueOf(k));
                                     ps.setString(5, String.valueOf(k));
                                 } else {
-                                    ps.setString(2, item.getFcInformativeNotes().getP().get(i).getLists().get(j).getItem().get(k).getId());
-                                    ps.setString(5, item.getFcInformativeNotes().getP().get(i).getLists().get(j).getItem().get(k).getId());
+                                    ps.setString(2, item.getFcInformativeNotes().getP().get(i).getLists().get(j).getItem().get(k).getId().toUpperCase());
+                                    ps.setString(5, item.getFcInformativeNotes().getP().get(i).getLists().get(j).getItem().get(k).getId().toUpperCase());
                                 }
 
-                                ps.setString(3, String.valueOf(item.getFcInformativeNotes().getP().get(i).getLists().get(j).getItem().get(k).getCombo()));
-                                ps.setString(4, item.getFcInformativeNotes().getP().get(i).getId());
+                                ps.setString(3, String.valueOf(item.getFcInformativeNotes().getP().get(i).getLists().get(j).getItem().get(k).getCombo()).replace("[", "").replace("]", "").replaceAll("\r\n", " ").trim());
+                                ps.setString(4, item.getFcInformativeNotes().getP().get(i).getId().toUpperCase());
 
                                 ps.addBatch();
                             }

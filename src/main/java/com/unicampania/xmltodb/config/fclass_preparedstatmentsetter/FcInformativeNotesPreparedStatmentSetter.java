@@ -21,11 +21,11 @@ public class FcInformativeNotesPreparedStatmentSetter implements ItemPreparedSta
                 if(item.getFcInformativeNotes().getP().get(i).getId()== null){
                     ps.setString(2, String.valueOf(i));
                 }else {
-                    ps.setString(2, item.getFcInformativeNotes().getP().get(i).getId());
+                    ps.setString(2, item.getFcInformativeNotes().getP().get(i).getId().toUpperCase());
                 }
-                ps.setString(3, String.valueOf(item.getFcInformativeNotes().getP().get(i).getCombo()));
-                ps.setString(4, item.getId());
-                ps.setString(5, item.getFcInformativeNotes().getP().get(i).getId());
+                ps.setString(3, String.valueOf(item.getFcInformativeNotes().getP().get(i).getCombo()).replace("[", "").replace("]", "").replaceAll("\r\n", " ").trim());
+                ps.setString(4, item.getId().toUpperCase());
+                ps.setString(5, item.getFcInformativeNotes().getP().get(i).getId().toUpperCase());
                 ps.addBatch();
 
             }

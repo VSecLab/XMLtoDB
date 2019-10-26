@@ -250,10 +250,6 @@ CREATE TABLE feassignmentnotes(
 
 
 
-
-
-
-
 DROP TABLE IF EXISTS acintroduction;
 DROP TABLE IF EXISTS aclass;
 
@@ -261,7 +257,7 @@ DROP TABLE IF EXISTS aclass;
 CREATE TABLE aclass(
 
     id VARCHAR(4) NOT NULL PRIMARY KEY,
-    name VARCHAR(400)
+    name VARCHAR(100)
 
 ) ;
 

@@ -42,13 +42,6 @@ public class Para {
     }
 
 
-    @Override
-    public String toString() {
-        return "type= " + type + '\'' +
-                "idi= " + id + '\'' +
-                "combo= " + getCombo();
-    }
-
 
     public static List<String> merge(List<String> a, List<Xref> b, List<Italic> c) {
 

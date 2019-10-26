@@ -26,10 +26,10 @@ public class ListItemFfUsertNotesPreparedStatmentSetter implements ItemPreparedS
                                 ps.setString(5, String.valueOf(z));
 
                             } else {
-                                ps.setString(2, String.valueOf(item.getFfamilyList().get(i).getFfUserNotes().getP().get(j).getLists().get(k).getItem().get(z).getId()));
-                                ps.setString(5, String.valueOf(item.getFfamilyList().get(i).getFfUserNotes().getP().get(j).getLists().get(k).getItem().get(z).getId()));
+                                ps.setString(2, String.valueOf(item.getFfamilyList().get(i).getFfUserNotes().getP().get(j).getLists().get(k).getItem().get(z).getId()).toUpperCase());
+                                ps.setString(5, String.valueOf(item.getFfamilyList().get(i).getFfUserNotes().getP().get(j).getLists().get(k).getItem().get(z).getId()).toUpperCase());
                             }
-                            ps.setString(3, String.valueOf(item.getFfamilyList().get(i).getFfUserNotes().getP().get(j).getLists().get(k).getItem().get(z).getCombo()));
+                            ps.setString(3, String.valueOf(item.getFfamilyList().get(i).getFfUserNotes().getP().get(j).getLists().get(k).getItem().get(z).getCombo()).replace("[", "").replace("]", "").replaceAll("\r\n", " ").trim());
 
                             ps.setString(4, item.getFfamilyList().get(i).getFfUserNotes().getP().get(j).getId());
                             ps.addBatch();

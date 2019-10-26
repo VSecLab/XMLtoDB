@@ -14,11 +14,11 @@ public class FcoDependenciesPreparedStatmentSetter implements ItemPreparedStatem
             for (int j = 0; j < item.getFfamilyList().get(i).getFComponentList().size(); j++) {
                 if (item.getFfamilyList().get(i).getFComponentList().get(j).getFcoDependencies().getFcoDependsoncomponentList().size() == 0) {
                     ps.setString(1, "");
-                    ps.setString(2, item.getFfamilyList().get(i).getFComponentList().get(j).getId());
+                    ps.setString(2, item.getFfamilyList().get(i).getFComponentList().get(j).getId().toUpperCase());
                 } else {
                     for (int k = 0; k < item.getFfamilyList().get(i).getFComponentList().get(j).getFcoDependencies().getFcoDependsoncomponentList().size(); k++) {
-                        ps.setString(1, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoDependencies().getFcoDependsoncomponentList().get(k).getFcomponent());
-                        ps.setString(2, item.getFfamilyList().get(i).getFComponentList().get(j).getId());
+                        ps.setString(1, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoDependencies().getFcoDependsoncomponentList().get(k).getFcomponent().toUpperCase());
+                        ps.setString(2, item.getFfamilyList().get(i).getFComponentList().get(j).getId().toUpperCase());
                         ps.addBatch();
                     }
                 }
