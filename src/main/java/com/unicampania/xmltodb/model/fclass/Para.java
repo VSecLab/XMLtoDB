@@ -46,6 +46,10 @@ public class Para {
     public static List<String> merge(List<String> a, List<Xref> b, List<Italic> c) {
 
         List<String> res = new ArrayList<>();
+        if(a.size()== 1 ){
+            res.add(a.get(0));
+            return  res ;
+        }
         for (int i = 0; i < a.size(); i++) {
 
             res.add(a.get(i).replaceAll("\r\n", " ").trim());
