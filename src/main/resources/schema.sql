@@ -143,6 +143,7 @@ CREATE TABLE fcohierarchical(
 
 CREATE TABLE fcodependencies(
 
+    id VARCHAR(30) PRIMARY KEY,
     fcomponent VARCHAR(10),
     idf VARCHAR(10) ,
     FOREIGN KEY (idf) REFERENCES fcomponent(id)

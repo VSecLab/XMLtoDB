@@ -214,7 +214,7 @@ public class BatchConf {
     public JdbcBatchItemWriter<Fclass> writerFcoDependencies() {
         JdbcBatchItemWriter<Fclass> writer = new JdbcBatchItemWriter<Fclass>();
         writer.setDataSource(dataSource);
-        writer.setSql("INSERT INTO fcodependencies(fcomponent,idf) VALUES(?,?)");
+        writer.setSql("INSERT INTO fcodependencies(id, fcomponent,idf) VALUES(?,?,?) ON DUPLICATE KEY UPDATE id = ?");
         writer.setItemPreparedStatementSetter(new FcoDependenciesPreparedStatmentSetter());
         return writer;
 
