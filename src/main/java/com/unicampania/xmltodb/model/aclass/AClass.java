@@ -21,4 +21,8 @@ public class AClass {
     @Getter
     @XmlElement(name = "ac-introduction")
     private AcIntroduction acIntroduction = new AcIntroduction();
+
+    @Getter
+    @XmlElement(name = "ac-overview")
+    private AcOverview acOverview = new AcOverview();
 }

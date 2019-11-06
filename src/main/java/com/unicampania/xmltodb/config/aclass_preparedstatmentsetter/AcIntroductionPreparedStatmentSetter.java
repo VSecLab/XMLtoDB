@@ -1,7 +1,6 @@
 package com.unicampania.xmltodb.config.aclass_preparedstatmentsetter;
 
 import com.unicampania.xmltodb.model.aclass.AClass;
-
 import org.springframework.batch.item.database.ItemPreparedStatementSetter;
 
 import java.sql.PreparedStatement;
@@ -12,9 +11,6 @@ public class AcIntroductionPreparedStatmentSetter implements ItemPreparedStateme
 
     @Override
     public void setValues(AClass item, PreparedStatement ps) throws SQLException {
-
-
-
         for (int i = 0; i < item.getAcIntroduction().getP().size(); i++) {
 
             ps.setString(1, item.getAcIntroduction().getP().get(i).getType());

@@ -2,6 +2,7 @@ package com.unicampania.xmltodb.config;
 
 import com.unicampania.xmltodb.config.aclass_preparedstatmentsetter.AClassPreparedStatmentSetter;
 import com.unicampania.xmltodb.config.aclass_preparedstatmentsetter.AcIntroductionPreparedStatmentSetter;
+import com.unicampania.xmltodb.config.aclass_preparedstatmentsetter.AcOverviewPreparedStatmentSetter;
 import com.unicampania.xmltodb.config.fclass_preparedstatmentsetter.*;
 import com.unicampania.xmltodb.model.aclass.AClass;
 import com.unicampania.xmltodb.model.fclass.Fclass;
@@ -107,6 +108,15 @@ public class BatchConf {
         writer.setDataSource(dataSource);
         writer.setSql("INSERT INTO acintroduction(type, id, para, ida) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE id = ?");
         writer.setItemPreparedStatementSetter(new AcIntroductionPreparedStatmentSetter());
+        return writer;
+    }
+
+    @Bean
+    public JdbcBatchItemWriter<AClass> writerAcOverview() {
+        JdbcBatchItemWriter<AClass> writer = new JdbcBatchItemWriter<AClass>();
+        writer.setDataSource(dataSource);
+        writer.setSql("INSERT INTO acoverview(type, id, para, ida) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE id = ?");
+        writer.setItemPreparedStatementSetter(new AcOverviewPreparedStatmentSetter());
         return writer;
     }
 
@@ -354,8 +364,8 @@ public class BatchConf {
 
 
    @Bean
-    public Job exportPerosnJob() {
-        return jobBuilderFactory.get("importPersonJob").incrementer(new RunIdIncrementer()).flow(step1()).end().build();
+    public Job exportFClassJob() {
+        return jobBuilderFactory.get("importFClassJob").incrementer(new RunIdIncrementer()).flow(step1()).end().build();
     }
 
 
@@ -364,6 +374,7 @@ public class BatchConf {
         writer.setDelegates(Arrays.asList(
                 writerAClass(),
                 writerAcIntroduction()));
+                writerAcOverview();
         return writer;
     }
 

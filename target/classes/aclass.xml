@@ -19910,7 +19910,9 @@
         </ae-evaluator>
     </a-component>
 </a-family>
-</a-class><a-class name="Protection Profile Configuration evaluation" id="ace"><ac-introduction><para type="normal">
+</a-class>
+    <a-class name="Protection Profile Configuration evaluation" id="ace">
+        <ac-introduction><para type="normal">
     Evaluating a PP-Configuration is required to demonstrate that the PP-Configuration is
     sound and consistent. These properties are necessary for the PP-Configuration to be
     suitable for use as the basis for writing an ST or another PP or PP-Configuration.</para><para type="normal">
