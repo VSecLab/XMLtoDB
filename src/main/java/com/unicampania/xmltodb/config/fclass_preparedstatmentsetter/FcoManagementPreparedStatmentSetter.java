@@ -16,11 +16,11 @@ public class FcoManagementPreparedStatmentSetter implements ItemPreparedStatemen
             for (int j = 0; j < item.getFfamilyList().get(i).getFComponentList().size(); j++) {
                 for (int k = 0; k < item.getFfamilyList().get(i).getFComponentList().get(j).getFcoManagementList().size(); k++) {
                     ps.setString(1, String.valueOf(k));
-                    ps.setString(2, item.getFfamilyList().get(i).getFComponentList().get(j).getId().concat(String.valueOf(k)));
+                    ps.setString(2, item.getFfamilyList().get(i).getFComponentList().get(j).getId().concat(String.valueOf(k)).toUpperCase());
                     ps.setString(3, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoManagementList().get(k).getEqual());
                     ps.setString(4, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoManagementList().get(k).getValue());
-                    ps.setString(5, item.getFfamilyList().get(i).getFComponentList().get(j).getId());
-                    ps.setString(6, item.getFfamilyList().get(i).getFComponentList().get(j).getId().concat(String.valueOf(k)));
+                    ps.setString(5, item.getFfamilyList().get(i).getFComponentList().get(j).getId().toUpperCase());
+                    ps.setString(6, item.getFfamilyList().get(i).getFComponentList().get(j).getId().concat(String.valueOf(k)).toUpperCase());
                     ps.addBatch();
                 }
             }

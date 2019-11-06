@@ -14,9 +14,9 @@ public class SubClausePreparedStatmentSetter implements ItemPreparedStatementSet
             ps.clearBatch();
         } else {
             ps.setString(1, item.getFcInformativeNotes().getSubClause().getTitle());
-            ps.setString(2, item.getFcInformativeNotes().getSubClause().getId());
+            ps.setString(2, item.getFcInformativeNotes().getSubClause().getId().toUpperCase());
             ps.setString(3, item.getId());
-            ps.setString(4, item.getFcInformativeNotes().getSubClause().getId());
+            ps.setString(4, item.getFcInformativeNotes().getSubClause().getId().toUpperCase());
             ps.addBatch();
 
         }

@@ -17,12 +17,12 @@ public class FfBehaviourPreparedStatmentSetter implements ItemPreparedStatementS
                     ps.setString(2, String.valueOf(j));
                     ps.setString(5, String.valueOf(j));
                 } else {
-                    ps.setString(2, item.getFfamilyList().get(i).getFfBehaviour().getP().get(j).getId());
-                    ps.setString(5, item.getFfamilyList().get(i).getFfBehaviour().getP().get(j).getId());
+                    ps.setString(2, item.getFfamilyList().get(i).getFfBehaviour().getP().get(j).getId().toUpperCase());
+                    ps.setString(5, item.getFfamilyList().get(i).getFfBehaviour().getP().get(j).getId().toUpperCase());
                 }
                 ps.setString(1, item.getFfamilyList().get(i).getFfBehaviour().getP().get(j).getType());
-                ps.setString(3, String.valueOf(item.getFfamilyList().get(i).getFfBehaviour().getP().get(j).getCombo()));
-                ps.setString(4, item.getFfamilyList().get(i).getId());
+                ps.setString(3, String.valueOf(item.getFfamilyList().get(i).getFfBehaviour().getP().get(j).getCombo()).replace("[", "").replace("]", "").replaceAll("\r\n", " ").trim());
+                ps.setString(4, item.getFfamilyList().get(i).getId().toUpperCase());
                 ps.addBatch();
             }
 

@@ -143,6 +143,7 @@ CREATE TABLE fcohierarchical(
 
 CREATE TABLE fcodependencies(
 
+    id VARCHAR(30) PRIMARY KEY,
     fcomponent VARCHAR(10),
     idf VARCHAR(10) ,
     FOREIGN KEY (idf) REFERENCES fcomponent(id)
@@ -250,35 +251,25 @@ CREATE TABLE feassignmentnotes(
 
 
 
-
-
-
-DROP TABLE IF EXISTS acoverview;
 DROP TABLE IF EXISTS acintroduction;
 DROP TABLE IF EXISTS aclass;
 
 
-
 CREATE TABLE aclass(
+
     id VARCHAR(4) NOT NULL PRIMARY KEY,
     name VARCHAR(100)
-);
+
+) ;
 
 CREATE TABLE acintroduction(
+
     type VARCHAR(10),
     id VARCHAR(12) PRIMARY KEY,
     para VARCHAR(10000),
     ida VARCHAR(4),
     FOREIGN KEY (ida) REFERENCES aclass(id)
-);
 
-
-CREATE TABLE acoverview(
-    type VARCHAR(10),
-    id VARCHAR(12) PRIMARY KEY,
-    para VARCHAR(10000),
-    ida VARCHAR(4),
-    FOREIGN KEY (ida) REFERENCES aclass(id)
 );
 
 

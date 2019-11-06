@@ -3,6 +3,7 @@ package com.unicampania.xmltodb.model.fclass;
 
 
 import lombok.Getter;
+import lombok.experimental.FieldNameConstants;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -33,4 +34,6 @@ public class Fclass {
         @Getter
         @XmlElement(name = "f-family")
         private List<Ffamily> ffamilyList = new ArrayList<>();
+
+
 }

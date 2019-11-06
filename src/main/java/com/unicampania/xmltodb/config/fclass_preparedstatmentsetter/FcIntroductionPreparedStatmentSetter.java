@@ -16,10 +16,10 @@ public class FcIntroductionPreparedStatmentSetter implements ItemPreparedStateme
 
 
             ps.setString(1, item.getFcIntroduction().getP().get(i).getType());
-            ps.setString(2, item.getFcIntroduction().getP().get(i).getId());
+            ps.setString(2, item.getFcIntroduction().getP().get(i).getId().toUpperCase());
             ps.setString(3, String.valueOf(item.getFcIntroduction().getP().get(i).getCombo()).replace("[", "").replace("]", ""));
-            ps.setString(4, item.getId());
-            ps.setString(5, item.getFcIntroduction().getP().get(i).getId());
+            ps.setString(4, item.getId().toUpperCase());
+            ps.setString(5, item.getFcIntroduction().getP().get(i).getId().toUpperCase());
             ps.addBatch();
         }
     }

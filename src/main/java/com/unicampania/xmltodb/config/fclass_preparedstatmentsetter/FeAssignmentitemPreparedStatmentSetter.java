@@ -17,7 +17,7 @@ public class FeAssignmentitemPreparedStatmentSetter implements ItemPreparedState
 
                         ps.setString(1, "");
                         ps.setString(2, "");
-                        ps.setString(3, item.getFfamilyList().get(i).getFComponentList().get(j).getFElements().get(k).getIdf().get(0));
+                        ps.setString(3, item.getFfamilyList().get(i).getFComponentList().get(j).getFElements().get(k).getIdf().get(0).toUpperCase());
                         ps.setString(4, "");
 
 
@@ -25,10 +25,10 @@ public class FeAssignmentitemPreparedStatmentSetter implements ItemPreparedState
 
                         for (int l = 0; l < item.getFfamilyList().get(i).getFComponentList().get(j).getFElements().get(k).getFeAssignmentList().size(); l++) {
 
-                            ps.setString(1, item.getFfamilyList().get(i).getFComponentList().get(j).getFElements().get(k).getId().concat(String.valueOf(l)));
+                            ps.setString(1, item.getFfamilyList().get(i).getFComponentList().get(j).getFElements().get(k).getId().concat(String.valueOf(l)).toUpperCase());
                             ps.setString(2, item.getFfamilyList().get(i).getFComponentList().get(j).getFElements().get(k).getFeAssignmentList().get(l).getFeAssignmentitem().getText());
-                            ps.setString(3, item.getFfamilyList().get(i).getFComponentList().get(j).getFElements().get(k).getIdf().get(l));
-                            ps.setString(4, item.getFfamilyList().get(i).getFComponentList().get(j).getFElements().get(k).getId().concat(String.valueOf(l)));
+                            ps.setString(3, item.getFfamilyList().get(i).getFComponentList().get(j).getFElements().get(k).getIdf().get(l).toUpperCase());
+                            ps.setString(4, item.getFfamilyList().get(i).getFComponentList().get(j).getFElements().get(k).getId().concat(String.valueOf(l)).toUpperCase());
                             ps.addBatch();
 
                         }
