@@ -87,7 +87,7 @@ public class BatchConf {
     public JdbcBatchItemWriter<AClass> writerAClass() {
         JdbcBatchItemWriter<AClass> writer = new JdbcBatchItemWriter<AClass>();
         writer.setDataSource(dataSource);
-        writer.setSql("INSERT INTO aclass(id, name) VALUES(?,?)");
+        writer.setSql("INSERT INTO aclass(id, name) VALUES(?,?) ON DUPLICATE KEY UPDATE id = ?");
         writer.setItemPreparedStatementSetter(new AClassPreparedStatmentSetter());
         return writer;
     }

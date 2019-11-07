@@ -24,6 +24,11 @@ DROP TABLE IF EXISTS fcintroduction;
 DROP TABLE IF EXISTS fclass;
 
 
+DROP TABLE IF EXISTS acoverview;
+DROP TABLE IF EXISTS acintroduction;
+DROP TABLE IF EXISTS aclass;
+
+
 CREATE TABLE fclass(
 
     id VARCHAR(4) NOT NULL PRIMARY KEY,
@@ -251,8 +256,6 @@ CREATE TABLE feassignmentnotes(
 
 
 
-DROP TABLE IF EXISTS acintroduction;
-DROP TABLE IF EXISTS aclass;
 
 
 CREATE TABLE aclass(

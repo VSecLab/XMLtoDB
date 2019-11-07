@@ -22,7 +22,7 @@ public class AcOverviewPreparedStatmentSetter implements ItemPreparedStatementSe
                     .replace("]", ""));
             ps.setString(4, item.getId());
             ps.setString(5, item.getId().concat(Integer.toString(i)));
-           // ps.addBatch();
+            ps.addBatch();
         }
     }
 }
