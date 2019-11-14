@@ -66,19 +66,10 @@ public class BatchConf {
         Jaxb2Marshaller publicFigMarshaller = new Jaxb2Marshaller();
         publicFigMarshaller.setClassesToBeBound(AClass.class);
         reader.setUnmarshaller(publicFigMarshaller);
-        System.out.println(reader);
         return reader;
 
     }
 
-    @Bean
-    public JdbcBatchItemWriter<Fclass> writerFclass() {
-        JdbcBatchItemWriter<Fclass> writer = new JdbcBatchItemWriter<Fclass>();
-        writer.setDataSource(dataSource);
-        writer.setSql("INSERT INTO fclass(id,name) VALUES(?,?) ON DUPLICATE KEY UPDATE id = ?");
-        writer.setItemPreparedStatementSetter(new FclassPreparedStatmentSetter());
-        return writer;
-    }
 
     @Bean
     public JdbcBatchItemWriter<AClass> writerAClass() {
@@ -87,16 +78,6 @@ public class BatchConf {
         writer.setSql("INSERT INTO aclass(id, name) VALUES(?,?) ON DUPLICATE KEY UPDATE id = ?");
         writer.setItemPreparedStatementSetter(new AClassPreparedStatmentSetter());
         return writer;
-    }
-
-    @Bean
-    public JdbcBatchItemWriter<Fclass> writerFcIntroduction() {
-        JdbcBatchItemWriter<Fclass> writer = new JdbcBatchItemWriter<Fclass>();
-        writer.setDataSource(dataSource);
-        writer.setSql("INSERT INTO fcintroduction(type,id,para,idf) VALUES(?,?,?,?) ON DUPLICATE KEY UPDATE id = ?");
-        writer.setItemPreparedStatementSetter(new FcIntroductionPreparedStatmentSetter());
-        return writer;
-
     }
 
     @Bean
@@ -133,6 +114,26 @@ public class BatchConf {
         writer.setSql("INSERT INTO acapplicationnotes(type, id, para, ida) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE id = ?");
         writer.setItemPreparedStatementSetter(new AcApplicationNotesPreparedStatmentSetter());
         return writer;
+    }
+
+
+    @Bean
+    public JdbcBatchItemWriter<Fclass> writerFclass() {
+        JdbcBatchItemWriter<Fclass> writer = new JdbcBatchItemWriter<Fclass>();
+        writer.setDataSource(dataSource);
+        writer.setSql("INSERT INTO fclass(id,name) VALUES(?,?) ON DUPLICATE KEY UPDATE id = ?");
+        writer.setItemPreparedStatementSetter(new FclassPreparedStatmentSetter());
+        return writer;
+    }
+    
+    @Bean
+    public JdbcBatchItemWriter<Fclass> writerFcIntroduction() {
+        JdbcBatchItemWriter<Fclass> writer = new JdbcBatchItemWriter<Fclass>();
+        writer.setDataSource(dataSource);
+        writer.setSql("INSERT INTO fcintroduction(type,id,para,idf) VALUES(?,?,?,?) ON DUPLICATE KEY UPDATE id = ?");
+        writer.setItemPreparedStatementSetter(new FcIntroductionPreparedStatmentSetter());
+        return writer;
+
     }
 
     @Bean
@@ -371,16 +372,17 @@ public class BatchConf {
                 .build();
     }
 
+
+    @Bean
+    public Job exportFClassJob() {
+        return jobBuilderFactory.get("importFClassJob").incrementer(new RunIdIncrementer()).flow(step1()).end().build();
+    }
     @Bean
     public Job exportAClassJob() {
         return jobBuilderFactory.get("importAClassJob").incrementer(new RunIdIncrementer()).flow(step2()).end().build();
     }
 
 
-   @Bean
-    public Job exportFClassJob() {
-        return jobBuilderFactory.get("importFClassJob").incrementer(new RunIdIncrementer()).flow(step1()).end().build();
-    }
 
 
     public CompositeItemWriter<AClass> compositeItemWriterAClass() {
