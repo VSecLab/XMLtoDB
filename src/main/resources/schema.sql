@@ -23,7 +23,8 @@ DROP TABLE IF EXISTS fcinformativenotes;
 DROP TABLE IF EXISTS fcintroduction;
 DROP TABLE IF EXISTS fclass;
 
-
+DROP TABLE IF EXISTS acapplicationnotes;
+DROP TABLE IF EXISTS maintroduction;
 DROP TABLE IF EXISTS acoverview;
 DROP TABLE IF EXISTS acintroduction;
 DROP TABLE IF EXISTS aclass;
@@ -259,20 +260,40 @@ CREATE TABLE feassignmentnotes(
 
 
 CREATE TABLE aclass(
-
     id VARCHAR(4) NOT NULL PRIMARY KEY,
     name VARCHAR(100)
-
 ) ;
 
 CREATE TABLE acintroduction(
-
     type VARCHAR(10),
     id VARCHAR(12) PRIMARY KEY,
     para VARCHAR(10000),
     ida VARCHAR(4),
     FOREIGN KEY (ida) REFERENCES aclass(id)
+);
 
+CREATE TABLE acoverview(
+    type VARCHAR(10),
+    id VARCHAR(12) PRIMARY KEY,
+    para VARCHAR(10000),
+    ida VARCHAR(4),
+    FOREIGN KEY (ida) REFERENCES aclass(id)
+);
+
+CREATE TABLE maintroduction(
+    type VARCHAR(10),
+    id VARCHAR(12) PRIMARY KEY,
+    para VARCHAR(10000),
+    ida VARCHAR(4),
+    FOREIGN KEY (ida) REFERENCES aclass(id)
+);
+
+CREATE TABLE acapplicationnotes(
+    type VARCHAR(10),
+    id VARCHAR(12) PRIMARY KEY,
+    para VARCHAR(10000),
+    ida VARCHAR(4),
+    FOREIGN KEY (ida) REFERENCES aclass(id)
 );
 
 

@@ -1,8 +1,6 @@
 package com.unicampania.xmltodb.config;
 
-import com.unicampania.xmltodb.config.aclass_preparedstatmentsetter.AClassPreparedStatmentSetter;
-import com.unicampania.xmltodb.config.aclass_preparedstatmentsetter.AcIntroductionPreparedStatmentSetter;
-import com.unicampania.xmltodb.config.aclass_preparedstatmentsetter.AcOverviewPreparedStatmentSetter;
+import com.unicampania.xmltodb.config.aclass_preparedstatmentsetter.*;
 import com.unicampania.xmltodb.config.fclass_preparedstatmentsetter.*;
 import com.unicampania.xmltodb.model.aclass.AClass;
 import com.unicampania.xmltodb.model.fclass.Fclass;
@@ -25,7 +23,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 import javax.sql.DataSource;
-import java.security.acl.Acl;
 import java.util.Arrays;
 
 @Configuration
@@ -120,6 +117,23 @@ public class BatchConf {
         return writer;
     }
 
+    @Bean
+    public JdbcBatchItemWriter<AClass> writerMaIntroduction() {
+        JdbcBatchItemWriter<AClass> writer = new JdbcBatchItemWriter<AClass>();
+        writer.setDataSource(dataSource);
+        writer.setSql("INSERT INTO maintroduction(type, id, para, ida) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE id = ?");
+        writer.setItemPreparedStatementSetter(new MaIntroductionPreparedStatmentSetter());
+        return writer;
+    }
+
+    @Bean
+    public JdbcBatchItemWriter<AClass> writerAcApplicationNotes() {
+        JdbcBatchItemWriter<AClass> writer = new JdbcBatchItemWriter<AClass>();
+        writer.setDataSource(dataSource);
+        writer.setSql("INSERT INTO acapplicationnotes(type, id, para, ida) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE id = ?");
+        writer.setItemPreparedStatementSetter(new AcApplicationNotesPreparedStatmentSetter());
+        return writer;
+    }
 
     @Bean
     public JdbcBatchItemWriter<Fclass> writerFcInformativeNotes() {
@@ -373,8 +387,11 @@ public class BatchConf {
         CompositeItemWriter writer = new CompositeItemWriter();
         writer.setDelegates(Arrays.asList(
                 writerAClass(),
-                writerAcIntroduction()));
-                writerAcOverview();
+                writerAcIntroduction(),
+                writerAcOverview(),
+                writerMaIntroduction(),
+                writerAcApplicationNotes()));
+
         return writer;
     }
 

@@ -15,7 +15,7 @@ public class AClass {
     private String id;
 
     @Getter
-    @XmlAttribute(name="name")
+    @XmlAttribute(name = "name")
     private String name;
 
     @Getter
@@ -25,4 +25,12 @@ public class AClass {
     @Getter
     @XmlElement(name = "ac-overview")
     private AcOverview acOverview = new AcOverview();
+
+    @Getter
+    @XmlElement(name = "ma-introduction")
+    private MaIntroduction maIntroduction = new MaIntroduction();
+
+    @Getter
+    @XmlElement(name = "ac-application-notes")
+    private AcApplicationNotes acApplicationNotes = new AcApplicationNotes();
 }

@@ -11,9 +11,9 @@ public class AClassPreparedStatmentSetter implements ItemPreparedStatementSetter
 
     @Override
     public void setValues(AClass item, PreparedStatement ps) throws SQLException {
-        ps.setString(1, item.getId());
+        ps.setString(1, item.getId().toUpperCase());
         ps.setString(2, item.getName());
-        ps.setString(3, item.getId());
+        ps.setString(3, item.getId().toUpperCase());
     }
 }
 

@@ -14,14 +14,15 @@ public class AcIntroductionPreparedStatmentSetter implements ItemPreparedStateme
         for (int i = 0; i < item.getAcIntroduction().getP().size(); i++) {
 
             ps.setString(1, item.getAcIntroduction().getP().get(i).getType());
-            ps.setString(2, item.getId().concat(Integer.toString(i)));
+            ps.setString(2, item.getId().concat(Integer.toString(i)).toUpperCase());
             ps.setString(3, String.valueOf(item.getAcIntroduction()
-                    .getP().get(i)
-                    .getValue())
+                    .getP()
+                    .get(i)
+                    .getCombo())
                     .replace("[", "")
                     .replace("]", ""));
-            ps.setString(4, item.getId());
-            ps.setString(5, item.getId().concat(Integer.toString(i)));
+            ps.setString(4, item.getId().toUpperCase());
+            ps.setString(5, item.getId().concat(Integer.toString(i)).toUpperCase());
             ps.addBatch();
         }
     }

@@ -13,6 +13,5 @@ public class AcIntroduction {
     @XmlElement(name = "para")
     private List<Para> p = new ArrayList<>();
 
-
 }
 
