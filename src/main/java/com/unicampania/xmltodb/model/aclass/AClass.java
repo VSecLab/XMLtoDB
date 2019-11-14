@@ -33,4 +33,8 @@ public class AClass {
     @Getter
     @XmlElement(name = "ac-application-notes")
     private AcApplicationNotes acApplicationNotes = new AcApplicationNotes();
+
+    @Getter
+    @XmlElement(name = "ma-objectives")
+    private MaObjectives maObjectives = new MaObjectives();
 }

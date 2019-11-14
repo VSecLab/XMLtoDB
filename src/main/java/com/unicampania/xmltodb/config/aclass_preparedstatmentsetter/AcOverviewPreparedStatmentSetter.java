@@ -13,7 +13,7 @@ public class AcOverviewPreparedStatmentSetter implements ItemPreparedStatementSe
         for (int i = 0; i < item.getAcOverview().getP().size(); i++) {
 
             ps.setString(1, item.getAcOverview().getP().get(i).getType().toUpperCase());
-            ps.setString(2, item.getId().concat(Integer.toString(i)));
+            ps.setString(2, item.getId().concat(Integer.toString(i)).toUpperCase());
             ps.setString(3, String.valueOf(item.getAcOverview()
                     .getP()
                     .get(i)

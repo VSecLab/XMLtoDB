@@ -16,13 +16,12 @@ public class MaIntroductionPreparedStatmentSetter implements ItemPreparedStateme
             ps.setString(3, "");
             ps.setString(4, item.getId().toUpperCase());
             ps.setString(5, "");
-            ps.clearBatch();
         } else {
-            for (int i = 0; i < item.getAcOverview().getP().size(); i++) {
+            for (int i = 0; i < item.getMaIntroduction().getP().size(); i++) {
 
-                ps.setString(1, item.getAcOverview().getP().get(i).getType().toUpperCase());
-                ps.setString(2, item.getId().concat(Integer.toString(i)));
-                ps.setString(3, String.valueOf(item.getAcOverview()
+                ps.setString(1, item.getMaIntroduction().getP().get(i).getType().toUpperCase());
+                ps.setString(2, item.getId().concat(Integer.toString(i)).toUpperCase());
+                ps.setString(3, String.valueOf(item.getMaIntroduction()
                         .getP()
                         .get(i)
                         .getCombo())

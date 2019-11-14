@@ -116,6 +116,15 @@ public class BatchConf {
         return writer;
     }
 
+    @Bean
+    public JdbcBatchItemWriter<AClass> writerMaObjectives() {
+        JdbcBatchItemWriter<AClass> writer = new JdbcBatchItemWriter<AClass>();
+        writer.setDataSource(dataSource);
+        writer.setSql("INSERT INTO maobjectives(type, id, para, ida) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE id = ?");
+        writer.setItemPreparedStatementSetter(new MaObjectivesPreparedStatmentSetter());
+        return writer;
+    }
+
 
     @Bean
     public JdbcBatchItemWriter<Fclass> writerFclass() {
@@ -125,7 +134,7 @@ public class BatchConf {
         writer.setItemPreparedStatementSetter(new FclassPreparedStatmentSetter());
         return writer;
     }
-    
+
     @Bean
     public JdbcBatchItemWriter<Fclass> writerFcIntroduction() {
         JdbcBatchItemWriter<Fclass> writer = new JdbcBatchItemWriter<Fclass>();
@@ -392,7 +401,10 @@ public class BatchConf {
                 writerAcIntroduction(),
                 writerAcOverview(),
                 writerMaIntroduction(),
-                writerAcApplicationNotes()));
+                writerAcApplicationNotes(),
+                writerMaObjectives()
+                )
+        );
 
         return writer;
     }

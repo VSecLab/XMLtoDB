@@ -16,7 +16,6 @@ public class AcApplicationNotesPreparedStatmentSetter implements ItemPreparedSta
             ps.setString(3, "");
             ps.setString(4, item.getId().toUpperCase());
             ps.setString(5, "");
-            ps.clearBatch();
         } else {
             for (int i = 0; i < item.getAcApplicationNotes().getP().size(); i++) {
 
