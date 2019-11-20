@@ -1,5 +1,5 @@
 # README #
-Application Sviluppata all'unversità della Campania Luigi vanvitelli, Dipartimento di Ingegneria, dedicato alla gestione dei Security Target Common Criteria
+Application Sviluppata all'unversità della Campania Luigi Vanvitelli, Dipartimento di Ingegneria, dedicata alla gestione dei Security Target Common Criteria
 
 
 # How do I get set up? #
@@ -24,3 +24,4 @@ Lorenzo Diana
 lorenzo.diana92@gmail.com
 
 Roberto Chello
+robertochello@gmail.com

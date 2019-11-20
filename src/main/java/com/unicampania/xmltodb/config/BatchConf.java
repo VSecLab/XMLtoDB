@@ -126,6 +126,8 @@ public class BatchConf {
     }
 
 
+
+
     @Bean
     public JdbcBatchItemWriter<Fclass> writerFclass() {
         JdbcBatchItemWriter<Fclass> writer = new JdbcBatchItemWriter<Fclass>();

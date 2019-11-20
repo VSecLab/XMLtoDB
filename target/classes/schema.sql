@@ -23,6 +23,8 @@ DROP TABLE IF EXISTS fcinformativenotes;
 DROP TABLE IF EXISTS fcintroduction;
 DROP TABLE IF EXISTS fclass;
 
+
+DROP TABLE IF EXISTS maapplicationnotes;
 DROP TABLE IF EXISTS maobjectives;
 DROP TABLE IF EXISTS acapplicationnotes;
 DROP TABLE IF EXISTS maintroduction;
@@ -304,5 +306,7 @@ CREATE TABLE maobjectives(
     ida VARCHAR(4),
     FOREIGN KEY (ida) REFERENCES aclass(id)
 );
+
+
 
 
