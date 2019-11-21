@@ -24,6 +24,12 @@ DROP TABLE IF EXISTS fcintroduction;
 DROP TABLE IF EXISTS fclass;
 
 
+
+
+
+
+
+DROP TABLE IF EXISTS para;
 DROP TABLE IF EXISTS maapplicationnotes;
 DROP TABLE IF EXISTS maobjectives;
 DROP TABLE IF EXISTS acapplicationnotes;
