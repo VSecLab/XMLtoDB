@@ -12,16 +12,17 @@ public class Para {
 
 
     @Getter
-    @XmlAttribute(name = "type")
-    private String type;
+    @XmlAttribute(name = "id")
+    private String id_para = new String();
 
     @Getter
-    @XmlAttribute(name = "id")
-    private String id = "";
+    @XmlAttribute(name = "type")
+    private String type = new String();
+
 
     @Getter
     @XmlMixed
-    private List<String> values = new ArrayList<>();                //questo deve contenere il testo del para
+    private List<String> testo = new ArrayList<>();                //questo deve contenere il testo del para
 
     @Getter
     @XmlElement(name = "xref")

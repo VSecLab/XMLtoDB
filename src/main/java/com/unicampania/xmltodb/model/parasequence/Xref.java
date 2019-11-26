@@ -2,20 +2,20 @@ package com.unicampania.xmltodb.model.parasequence;
 
 import lombok.Getter;
 
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlAttribute;
 
 public class Xref {
 
     @Getter
-    @XmlElement(name = "show")
-    private String show;
+    @XmlAttribute(name = "show")
+    private String show = new String();
 
     @Getter
-    @XmlElement(name = "id")
-    private String id;
+    @XmlAttribute(name = "id")
+    private String id_xref = new String();
 
     @Override
     public String toString() {
-        return  id.toUpperCase().replaceAll ("\r\n", " ").trim() + " " ;
+        return  id_xref.toUpperCase().replaceAll ("\r\n", " ").trim() + " " ;
     }
 }

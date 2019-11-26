@@ -8,5 +8,5 @@ public class Url {
 
     @Getter
     @XmlAttribute(name = "id")
-    private String id;
+    private String id_url = new String();
 }

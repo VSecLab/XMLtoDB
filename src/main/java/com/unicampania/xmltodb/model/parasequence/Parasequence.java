@@ -1,6 +1,5 @@
 package com.unicampania.xmltodb.model.parasequence;
 
-import com.unicampania.xmltodb.model.fclass.Xref;
 import lombok.Getter;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -37,7 +36,7 @@ public class Parasequence {
 
     @Getter
     @XmlElement(name = "table")
-    private List<Table> tables = new ArrayList<>();
+    private List<Tablee> tablees = new ArrayList<>();
 
     @Getter
     @XmlElement(name = "Example")

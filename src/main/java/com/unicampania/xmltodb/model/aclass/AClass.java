@@ -37,4 +37,5 @@ public class AClass {
     @Getter
     @XmlElement(name = "ma-objectives")
     private MaObjectives maObjectives = new MaObjectives();
+
 }

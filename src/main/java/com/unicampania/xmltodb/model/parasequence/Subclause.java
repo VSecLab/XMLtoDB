@@ -12,5 +12,9 @@ public class Subclause {
 
     @Getter
     @XmlElement
-    private List<Parasequence> parasequences = new ArrayList<>();
+    private String id_subclauses = new String();
+
+    @Getter
+    @XmlElement
+    private Parasequence parasequence = new Parasequence();
 }

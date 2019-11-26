@@ -9,6 +9,9 @@ import java.util.List;
 public class Selection {
 
     @Getter
+    @XmlElement
+    private String id_selection = new String();
+    @Getter
     @XmlElement(name = "xref")
     private List<Xref> xrefs = new ArrayList<>();
 

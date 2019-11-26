@@ -9,10 +9,21 @@ import java.util.List;
 public class Bold {
 
     @Getter
+    @XmlElement
+    private String id_bold = new String();
+
+    @Getter
+    @XmlElement
+    private String testo = new String();
+
+    @Getter
     @XmlElement(name = "xref")
     private List<Xref> xrefs = new ArrayList<>();
 
     @Getter
-    @XmlElement(name = "xref")
+    @XmlElement(name = "italic")
     private List<Italic> italics = new ArrayList<>();
+
+
+
 }

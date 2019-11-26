@@ -9,6 +9,10 @@ import java.util.List;
 public class Item {
 
     @Getter
+    @XmlElement
+    private String id_item = new String();
+
+    @Getter
     @XmlElement(name = "para")
     private List<Para> paras = new ArrayList<>();
 

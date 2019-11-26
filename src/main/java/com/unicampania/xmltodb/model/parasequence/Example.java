@@ -8,6 +8,6 @@ public class Example {
 
     @Getter
     @XmlElement(name = "id")
-    private String id;
+    private String id_example = new String();
 
 }

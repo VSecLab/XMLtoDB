@@ -23,13 +23,31 @@ DROP TABLE IF EXISTS fcinformativenotes;
 DROP TABLE IF EXISTS fcintroduction;
 DROP TABLE IF EXISTS fclass;
 
-
-
-
-
-
-
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS figure;
+DROP TABLE IF EXISTS acronym;
+DROP TABLE IF EXISTS biblioentry;
+DROP TABLE IF EXISTS glossentry;
+DROP TABLE IF EXISTS url;
+DROP TABLE IF EXISTS italic;
+DROP TABLE IF EXISTS bold;
+DROP TABLE IF EXISTS selection;
+DROP TABLE IF EXISTS list;
+DROP TABLE IF EXISTS item;
 DROP TABLE IF EXISTS para;
+DROP TABLE IF EXISTS selection;
+DROP TABLE IF EXISTS example;
+DROP TABLE IF EXISTS tablee;
+DROP TABLE IF EXISTS subclausess;
+DROP TABLE IF EXISTS parasequence;
+DROP TABLE IF EXISTS xref;
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+
+
+
+
 DROP TABLE IF EXISTS maapplicationnotes;
 DROP TABLE IF EXISTS maobjectives;
 DROP TABLE IF EXISTS acapplicationnotes;
@@ -39,12 +57,191 @@ DROP TABLE IF EXISTS acintroduction;
 DROP TABLE IF EXISTS aclass;
 
 
+CREATE TABLE figure(
+    id_figure VARCHAR(100) NOT NULL PRIMARY KEY,
+    entity VARCHAR(100),
+    title VARCHAR(100),
+    width VARCHAR(10),
+    height VARCHAR(10)
+);
+
+CREATE TABLE acronym(
+    id_acronym VARCHAR(100) NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE biblioentry(
+    id_biblioentry VARCHAR(100) NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE glossentry(
+    id_glossentry VARCHAR(100) NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE xref(
+    id_xref VARCHAR(100) NOT NULL PRIMARY KEY,
+    showw VARCHAR(100)
+);
+
+CREATE TABLE url(
+    id_url VARCHAR(100) NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE bold(
+    id_bold VARCHAR(100) NOT NULL PRIMARY KEY,
+    testo VARCHAR(1000),
+    id_xref VARCHAR(100),
+    id_italic VARCHAR(100)
+);
+
+CREATE TABLE italic(
+    id_italic VARCHAR(100) NOT NULL PRIMARY KEY,
+    testo VARCHAR(1000),
+    id_xref VARCHAR(100),
+    id_bold VARCHAR(100)
+);
+
+
+CREATE TABLE para(
+    id_para VARCHAR(100) NOT NULL PRIMARY KEY,
+    type VARCHAR(100),
+    testo VARCHAR(1000),
+    id_xref VARCHAR(100),
+    id_url VARCHAR(100),
+    id_list VARCHAR(100),
+    id_bold VARCHAR(100),
+    id_italic VARCHAR(100)
+);
+
+CREATE TABLE item(
+    id_item VARCHAR(100) NOT NULL PRIMARY KEY,
+    id_para VARCHAR(100),
+    id_xref VARCHAR(100),
+    id_url VARCHAR(100),
+    id_list VARCHAR(100),
+    id_bold VARCHAR(100),
+    id_italic VARCHAR(100),
+    id_selection VARCHAR(100)
+);
+
+CREATE TABLE selection(
+    id_selection VARCHAR(100) NOT NULL PRIMARY KEY,
+    id_xref VARCHAR(100),
+    id_italic VARCHAR(100)
+);
+
+CREATE TABLE list(
+    id_list VARCHAR(100) NOT NULL PRIMARY KEY,
+    id_item VARCHAR(100)
+);
+
+
+CREATE TABLE example(
+    id_example VARCHAR(100) NOT NULL PRIMARY KEY
+);
+
+CREATE TABLE tablee(
+    id_table VARCHAR(100) NOT NULL PRIMARY KEY,
+    width VARCHAR(10)
+);
+
+
+CREATE TABLE subclausess(
+    id_subclausess VARCHAR(100) NOT NULL PRIMARY KEY,
+    id_parasequence VARCHAR(100)
+);
+
+CREATE TABLE parasequence(
+    id_parasequence VARCHAR(100) NOT NULL PRIMARY KEY,
+    id_subclausess VARCHAR(100),
+    id_para VARCHAR(100),
+    id_figure VARCHAR(100),
+    id_acronym VARCHAR(100),
+    id_biblioentry VARCHAR(100),
+    id_glossentry VARCHAR(100),
+    id_table VARCHAR(100),
+    id_example VARCHAR(100)
+);
+
+
+ALTER TABLE bold
+ADD FOREIGN KEY (id_italic) REFERENCES italic(id_italic) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE bold
+ADD FOREIGN KEY (id_xref) REFERENCES xref(id_xref) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+ALTER TABLE italic
+ADD FOREIGN KEY (id_xref) REFERENCES xref(id_xref) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE italic
+ADD FOREIGN KEY (id_bold) REFERENCES bold(id_bold) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+ALTER TABLE para
+ADD FOREIGN KEY (id_xref) REFERENCES xref(id_xref) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE para
+ADD FOREIGN KEY (id_url) REFERENCES url(id_url) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE para
+ADD FOREIGN KEY (id_list) REFERENCES list(id_list) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE para
+ADD FOREIGN KEY (id_bold) REFERENCES bold(id_bold) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE para
+ADD FOREIGN KEY (id_italic) REFERENCES italic(id_italic) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+ALTER TABLE item
+ADD FOREIGN KEY (id_para) REFERENCES para(id_para) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE item
+ADD FOREIGN KEY (id_xref) REFERENCES xref(id_xref)ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE item
+ADD FOREIGN KEY (id_url) REFERENCES url(id_url) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE item
+ADD FOREIGN KEY (id_list) REFERENCES list(id_list) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE item
+ADD FOREIGN KEY (id_bold) REFERENCES bold(id_bold) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE item
+ADD FOREIGN KEY (id_italic) REFERENCES italic(id_italic) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE item
+ADD FOREIGN KEY (id_selection) REFERENCES selection(id_selection) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+ALTER TABLE selection
+ADD FOREIGN KEY (id_xref) REFERENCES xref(id_xref) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE selection
+ADD FOREIGN KEY (id_italic) REFERENCES italic(id_italic) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE list
+ADD FOREIGN KEY (id_item) REFERENCES item(id_item) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE subclausess
+ADD FOREIGN KEY (id_parasequence) REFERENCES parasequence(id_parasequence) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE parasequence
+ADD FOREIGN KEY (id_subclausess) REFERENCES subclausess(id_subclausess) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE parasequence
+ADD FOREIGN KEY (id_para) REFERENCES para(id_para) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE parasequence
+ADD FOREIGN KEY (id_figure) REFERENCES figure(id_figure) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE parasequence
+ADD FOREIGN KEY (id_acronym) REFERENCES acronym(id_acronym) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE parasequence
+ADD FOREIGN KEY (id_biblioentry) REFERENCES biblioentry(id_biblioentry) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE parasequence
+ADD FOREIGN KEY (id_glossentry) REFERENCES glossentry(id_glossentry) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE parasequence
+ADD FOREIGN KEY (id_table) REFERENCES tablee(id_table) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE parasequence
+ADD FOREIGN KEY (id_example) REFERENCES example(id_example) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+
+
+
+
+
 CREATE TABLE fclass(
 
     id VARCHAR(4) NOT NULL PRIMARY KEY,
     name VARCHAR(40)
-
-) ;
+);
 
 CREATE TABLE fcintroduction(
 
@@ -268,6 +465,18 @@ CREATE TABLE feassignmentnotes(
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 CREATE TABLE aclass(
     id VARCHAR(4) NOT NULL PRIMARY KEY,
     name VARCHAR(100)
@@ -312,6 +521,8 @@ CREATE TABLE maobjectives(
     ida VARCHAR(4),
     FOREIGN KEY (ida) REFERENCES aclass(id)
 );
+
+
 
 
 
