@@ -39,7 +39,6 @@ DROP TABLE IF EXISTS selection;
 DROP TABLE IF EXISTS example;
 DROP TABLE IF EXISTS tablee;
 DROP TABLE IF EXISTS subclausess;
-DROP TABLE IF EXISTS parasequence;
 DROP TABLE IF EXISTS xref;
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -147,12 +146,7 @@ CREATE TABLE tablee(
 
 CREATE TABLE subclausess(
     id_subclausess VARCHAR(100) NOT NULL PRIMARY KEY,
-    id_parasequence VARCHAR(100)
-);
-
-CREATE TABLE parasequence(
-    id_parasequence VARCHAR(100) NOT NULL PRIMARY KEY,
-    id_subclausess VARCHAR(100),
+    id_subclausess_ext VARCHAR(100),
     id_para VARCHAR(100),
     id_figure VARCHAR(100),
     id_acronym VARCHAR(100),
@@ -161,6 +155,7 @@ CREATE TABLE parasequence(
     id_table VARCHAR(100),
     id_example VARCHAR(100)
 );
+
 
 
 ALTER TABLE bold
@@ -211,24 +206,22 @@ ADD FOREIGN KEY (id_italic) REFERENCES italic(id_italic) ON UPDATE CASCADE ON DE
 ALTER TABLE list
 ADD FOREIGN KEY (id_item) REFERENCES item(id_item) ON UPDATE CASCADE ON DELETE CASCADE;
 
-ALTER TABLE subclausess
-ADD FOREIGN KEY (id_parasequence) REFERENCES parasequence(id_parasequence) ON UPDATE CASCADE ON DELETE CASCADE;
 
-ALTER TABLE parasequence
-ADD FOREIGN KEY (id_subclausess) REFERENCES subclausess(id_subclausess) ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE parasequence
+ALTER TABLE subclausess
+ADD FOREIGN KEY (id_subclausess_ext) REFERENCES subclausess(id_subclausess) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE subclausess
 ADD FOREIGN KEY (id_para) REFERENCES para(id_para) ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE parasequence
+ALTER TABLE subclausess
 ADD FOREIGN KEY (id_figure) REFERENCES figure(id_figure) ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE parasequence
+ALTER TABLE subclausess
 ADD FOREIGN KEY (id_acronym) REFERENCES acronym(id_acronym) ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE parasequence
+ALTER TABLE subclausess
 ADD FOREIGN KEY (id_biblioentry) REFERENCES biblioentry(id_biblioentry) ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE parasequence
+ALTER TABLE subclausess
 ADD FOREIGN KEY (id_glossentry) REFERENCES glossentry(id_glossentry) ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE parasequence
+ALTER TABLE subclausess
 ADD FOREIGN KEY (id_table) REFERENCES tablee(id_table) ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE parasequence
+ALTER TABLE subclausess
 ADD FOREIGN KEY (id_example) REFERENCES example(id_example) ON UPDATE CASCADE ON DELETE CASCADE;
 
 

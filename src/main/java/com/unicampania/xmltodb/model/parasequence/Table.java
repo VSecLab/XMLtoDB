@@ -5,7 +5,7 @@ import lombok.Getter;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
-public class Tablee {
+public class Table {
 
     @Getter
     @XmlAttribute(name = "id")

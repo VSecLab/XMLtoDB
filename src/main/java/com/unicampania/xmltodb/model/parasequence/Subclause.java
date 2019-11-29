@@ -16,5 +16,34 @@ public class Subclause {
 
     @Getter
     @XmlElement
-    private Parasequence parasequence = new Parasequence();
+    private List<Subclause> subclauses = new ArrayList<>();
+
+    @Getter
+    @XmlElement
+    private List<Para> paras = new ArrayList<>();
+
+    @Getter
+    @XmlElement
+    private List<Figure> figures = new ArrayList<>();
+
+    @Getter
+    @XmlElement
+    private List<Acronym> acronyms = new ArrayList<>();
+
+    @Getter
+    @XmlElement
+    private List<Biblioentry> biblioentries = new ArrayList<>();
+
+    @Getter
+    @XmlElement
+    private List<Glossentry> glossentries = new ArrayList<>();
+
+    @Getter
+    @XmlElement
+    private List<Table> tables = new ArrayList<>();
+
+    @Getter
+    @XmlElement
+    private List<Example> examples = new ArrayList<>();
+
 }

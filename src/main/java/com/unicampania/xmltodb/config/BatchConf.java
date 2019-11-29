@@ -47,6 +47,7 @@ public class BatchConf {
     public ProcessorAClass processorAClass() { return new ProcessorAClass(); }
 
 
+
     @Bean
     ItemReader<Fclass> readerFClass() {
         StaxEventItemReader<Fclass> reader = new StaxEventItemReader<Fclass>();
