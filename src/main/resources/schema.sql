@@ -23,6 +23,8 @@ DROP TABLE IF EXISTS fcinformativenotes;
 DROP TABLE IF EXISTS fcintroduction;
 DROP TABLE IF EXISTS fclass;
 
+
+
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS figure;
 DROP TABLE IF EXISTS acronym;

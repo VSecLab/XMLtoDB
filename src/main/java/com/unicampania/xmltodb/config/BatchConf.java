@@ -4,7 +4,7 @@ import com.unicampania.xmltodb.config.aclass_preparedstatmentsetter.*;
 import com.unicampania.xmltodb.config.fclass_preparedstatmentsetter.*;
 import com.unicampania.xmltodb.model.aclass.AClass;
 import com.unicampania.xmltodb.model.fclass.Fclass;
-import com.unicampania.xmltodb.processor.FcIntroductionItenProcessor;
+import com.unicampania.xmltodb.processor.ProcessorFClass;
 import com.unicampania.xmltodb.processor.ProcessorAClass;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
@@ -39,8 +39,8 @@ public class BatchConf {
     private DataSource dataSource;
 
     @Bean
-    public FcIntroductionItenProcessor processor() {
-        return new FcIntroductionItenProcessor();
+    public ProcessorFClass processorFClass() {
+        return new ProcessorFClass();
     }
 
     @Bean
@@ -370,7 +370,7 @@ public class BatchConf {
     public Step step1() {
         return stepBuilderFactory.get("step1").<Fclass, Fclass>chunk(100)
                 .reader(readerFClass())
-                .processor(processor())
+                .processor(processorFClass())
                 .writer(compositeItemWriter())
                 .build();
     }
