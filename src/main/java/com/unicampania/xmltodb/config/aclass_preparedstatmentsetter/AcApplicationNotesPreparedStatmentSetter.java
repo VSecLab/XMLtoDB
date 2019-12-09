@@ -6,7 +6,7 @@ import org.springframework.batch.item.database.ItemPreparedStatementSetter;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class AcApplicationNotesPreparedStatmentSetter implements ItemPreparedStatementSetter<AClass> {
+public class  AcApplicationNotesPreparedStatmentSetter implements ItemPreparedStatementSetter<AClass> {
     @Override
     public void setValues(AClass item, PreparedStatement ps) throws SQLException {
 

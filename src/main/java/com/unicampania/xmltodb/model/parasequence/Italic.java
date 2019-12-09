@@ -3,6 +3,7 @@ package com.unicampania.xmltodb.model.parasequence;
 import lombok.Getter;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlValue;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +25,9 @@ public class Italic {
     @XmlElement(name = "bold")
     private List<Bold> bolds = new ArrayList<>();
 
-
-
-
+    @Override
+    public String toString() {
+        return  testo.replaceAll ("\r\n", " ").trim() + " " ;
+    }
 
 }

@@ -1,6 +1,6 @@
 package com.unicampania.xmltodb.model.aclass;
 
-import com.unicampania.xmltodb.model.fclass.Para;
+import com.unicampania.xmltodb.model.parasequence.Para;
 import lombok.Getter;
 
 import javax.xml.bind.annotation.XmlElement;

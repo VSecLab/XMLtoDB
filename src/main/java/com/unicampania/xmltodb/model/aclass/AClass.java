@@ -38,4 +38,12 @@ public class AClass {
     @XmlElement(name = "ma-objectives")
     private MaObjectives maObjectives = new MaObjectives();
 
+    @Getter
+    @XmlElement(name = "ma-application-notes")
+    private MaApplicationNotes maApplicationNotes = new MaApplicationNotes();
+
+    @Getter
+    @XmlElement(name = "a-family")
+    private AFamily aFamily = new AFamily();
+
 }

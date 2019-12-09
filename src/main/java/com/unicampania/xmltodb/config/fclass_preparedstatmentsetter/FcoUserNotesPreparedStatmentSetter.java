@@ -15,12 +15,12 @@ public class FcoUserNotesPreparedStatmentSetter implements ItemPreparedStatement
 
                 for (int k = 0; k < item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().size(); k++) {
 
-                    if (item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getId().equals("")) {
+                    if (item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getId_para().equals("")) {
                         ps.setString(2, item.getFfamilyList().get(i).getFComponentList().get(j).getId().concat(String.valueOf(k)));
                         ps.setString(5, item.getFfamilyList().get(i).getFComponentList().get(j).getId().concat(String.valueOf(k)));
                     } else {
-                        ps.setString(2, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getId().toUpperCase());
-                        ps.setString(5, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getId().toUpperCase());
+                        ps.setString(2, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getId_para().toUpperCase());
+                        ps.setString(5, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getId_para().toUpperCase());
                     }
                     ps.setString(1, item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getType());
                     ps.setString(3, String.valueOf(item.getFfamilyList().get(i).getFComponentList().get(j).getFcoUserNotes().getP().get(k).getCombo()).replace("[", "").replace("]", "").replaceAll("\r\n", " ").trim());

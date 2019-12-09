@@ -3,6 +3,7 @@ package com.unicampania.xmltodb.config;
 import com.unicampania.xmltodb.config.aclass_preparedstatmentsetter.*;
 import com.unicampania.xmltodb.config.fclass_preparedstatmentsetter.*;
 import com.unicampania.xmltodb.model.aclass.AClass;
+import com.unicampania.xmltodb.model.aclass.MaApplicationNotes;
 import com.unicampania.xmltodb.model.fclass.Fclass;
 import com.unicampania.xmltodb.processor.ProcessorFClass;
 import com.unicampania.xmltodb.processor.ProcessorAClass;
@@ -68,8 +69,8 @@ public class BatchConf {
         publicFigMarshaller.setClassesToBeBound(AClass.class);
         reader.setUnmarshaller(publicFigMarshaller);
         return reader;
-
     }
+
 
 
     @Bean
@@ -126,7 +127,23 @@ public class BatchConf {
         return writer;
     }
 
+    @Bean
+    public JdbcBatchItemWriter<AClass> writerMaApplicationNotes() {
+        JdbcBatchItemWriter<AClass> writer = new JdbcBatchItemWriter<AClass>();
+        writer.setDataSource(dataSource);
+        writer.setSql("INSERT INTO maapplicationnotes(id_maapplicationnotes,id_subclausess, id_para, id_figure, id_acronym, id_biblioentry, id_glossentry, id_table, id_example, ida) VALUES (?,?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE id_maapplicationnotes = ?");
+        writer.setItemPreparedStatementSetter(new MaApplicationNotesPreparedStatmentSetter());
+        return writer;
+    }
 
+    @Bean
+    public JdbcBatchItemWriter<AClass> writerAFamily() {
+        JdbcBatchItemWriter<AClass> writer = new JdbcBatchItemWriter<AClass>();
+        writer.setDataSource(dataSource);
+        writer.setSql("INSERT INTO afamily(id_afamily, id_adobjectives, id_afoverview, id_aflevellingcriteria, id_adapplicationnotes, ida) VALUES (?, ?, ?, ?, ?, ?) ON DUPLICATE KEY id_afamily = ?");
+        writer.setItemPreparedStatementSetter(new AFamilyPreparedStatmentSetter());
+        return writer;
+    }
 
 
     @Bean
@@ -405,7 +422,9 @@ public class BatchConf {
                 writerAcOverview(),
                 writerMaIntroduction(),
                 writerAcApplicationNotes(),
-                writerMaObjectives()
+                writerMaObjectives(),
+                writerMaApplicationNotes(),
+                writerAFamily()
                 )
         );
 

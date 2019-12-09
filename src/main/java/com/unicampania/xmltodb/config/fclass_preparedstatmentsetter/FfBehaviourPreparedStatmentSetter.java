@@ -13,12 +13,12 @@ public class FfBehaviourPreparedStatmentSetter implements ItemPreparedStatementS
 
         for (int i = 0; i < item.getFfamilyList().size(); i++) {
             for (int j = 0; j < item.getFfamilyList().get(i).getFfBehaviour().getP().size(); j++) {
-                if (item.getFfamilyList().get(i).getFfBehaviour().getP().get(j).getId().equals("")) {
+                if (item.getFfamilyList().get(i).getFfBehaviour().getP().get(j).getId_para().equals("")) {
                     ps.setString(2, String.valueOf(j));
                     ps.setString(5, String.valueOf(j));
                 } else {
-                    ps.setString(2, item.getFfamilyList().get(i).getFfBehaviour().getP().get(j).getId().toUpperCase());
-                    ps.setString(5, item.getFfamilyList().get(i).getFfBehaviour().getP().get(j).getId().toUpperCase());
+                    ps.setString(2, item.getFfamilyList().get(i).getFfBehaviour().getP().get(j).getId_para().toUpperCase());
+                    ps.setString(5, item.getFfamilyList().get(i).getFfBehaviour().getP().get(j).getId_para().toUpperCase());
                 }
                 ps.setString(1, item.getFfamilyList().get(i).getFfBehaviour().getP().get(j).getType());
                 ps.setString(3, String.valueOf(item.getFfamilyList().get(i).getFfBehaviour().getP().get(j).getCombo()).replace("[", "").replace("]", "").replaceAll("\r\n", " ").trim());
