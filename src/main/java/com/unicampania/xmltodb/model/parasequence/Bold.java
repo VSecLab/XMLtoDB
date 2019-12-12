@@ -3,10 +3,12 @@ package com.unicampania.xmltodb.model.parasequence;
 import lombok.Getter;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
 import java.util.ArrayList;
 import java.util.List;
 
+@XmlRootElement(name = "bold")
 public class Bold {
 
     @Getter

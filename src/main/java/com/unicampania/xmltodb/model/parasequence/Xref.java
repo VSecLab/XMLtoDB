@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-
+@XmlRootElement(name = "xref")
 public class Xref {
 
 

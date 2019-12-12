@@ -3,7 +3,9 @@ package com.unicampania.xmltodb.model.parasequence;
 import lombok.Getter;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "figure")
 public class Figure {
 
     @Getter

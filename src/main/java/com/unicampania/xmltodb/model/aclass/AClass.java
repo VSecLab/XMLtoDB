@@ -6,6 +6,8 @@ import lombok.Getter;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
+import java.util.List;
 
 @XmlRootElement(name = "a-class")
 public class AClass {
@@ -28,22 +30,22 @@ public class AClass {
 
     @Getter
     @XmlElement(name = "ma-introduction")
-    private MaIntroduction maIntroduction = new MaIntroduction();
+    private MaIntroduction maIntroduction;
 
     @Getter
     @XmlElement(name = "ac-application-notes")
-    private AcApplicationNotes acApplicationNotes = new AcApplicationNotes();
+    private AcApplicationNotes acApplicationNotes;
 
     @Getter
     @XmlElement(name = "ma-objectives")
-    private MaObjectives maObjectives = new MaObjectives();
+    private MaObjectives maObjectives;
 
     @Getter
     @XmlElement(name = "ma-application-notes")
-    private MaApplicationNotes maApplicationNotes = new MaApplicationNotes();
+    private MaApplicationNotes maApplicationNotes;
 
     @Getter
     @XmlElement(name = "a-family")
-    private AFamily aFamily = new AFamily();
+    private List<AFamily> aFamilies = new ArrayList<>();
 
 }
