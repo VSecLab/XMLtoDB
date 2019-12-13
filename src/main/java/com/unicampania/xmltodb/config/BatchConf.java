@@ -6,6 +6,7 @@ import com.unicampania.xmltodb.config.parasequence_preparedstatmentsetter.*;
 import com.unicampania.xmltodb.model.aclass.AClass;
 import com.unicampania.xmltodb.model.fclass.Fclass;
 import com.unicampania.xmltodb.model.parasequence.*;
+import com.unicampania.xmltodb.model.parasequence.table.Table;
 import com.unicampania.xmltodb.processor.ProcessorFClass;
 import com.unicampania.xmltodb.processor.ProcessorAClass;
 import com.unicampania.xmltodb.processor.parasequence_processor.*;
@@ -231,7 +232,7 @@ public class BatchConf {
     public JdbcBatchItemWriter<Bold> writerBold() {
         JdbcBatchItemWriter<Bold> writer = new JdbcBatchItemWriter<Bold>();
         writer.setDataSource(dataSource);
-        writer.setSql("INSERT INTO url(id_url) VALUES (?) ON DUPLICATE KEY UPDATE id_url = ?");
+        writer.setSql("INSERT INTO bold(id_bold, testo, id_xref, id_italic) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE id_bold = ?");
         writer.setItemPreparedStatementSetter(new BoldPreparedStatmentSetter());
         return writer;
     }

@@ -1,4 +1,4 @@
-package com.unicampania.xmltodb.model.parasequence;
+package com.unicampania.xmltodb.model.parasequence.table;
 
 import com.sun.xml.txw2.annotation.XmlElement;
 import lombok.Getter;

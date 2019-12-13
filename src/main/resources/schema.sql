@@ -243,7 +243,12 @@ DROP TABLE IF EXISTS msaobjectives;
 DROP TABLE IF EXISTS msaapplicationnotes;
 DROP TABLE IF EXISTS msainput;
 DROP TABLE IF EXISTS acomponent;
+DROP TABLE IF EXISTS aedcelement;
+DROP TABLE IF EXISTS aecontent;
+DROP TABLE IF EXISTS aeevaluator;
+DROP TABLE IF EXISTS aedeveloper;
 DROP TABLE IF EXISTS afamily;
+DROP TABLE IF EXISTS mworkunit;
 
 DROP TABLE IF EXISTS maapplicationnotes;
 DROP TABLE IF EXISTS maobjectives;
@@ -275,6 +280,7 @@ DROP TABLE IF EXISTS list;
 DROP TABLE IF EXISTS item;
 DROP TABLE IF EXISTS para;
 DROP TABLE IF EXISTS selection;
+DROP TABLE IF EXISTS assignment;
 DROP TABLE IF EXISTS example;
 DROP TABLE IF EXISTS exampleterm;
 DROP TABLE IF EXISTS exampledef;
@@ -439,6 +445,14 @@ CREATE TABLE item(
 
 CREATE TABLE selection(
     id_selection VARCHAR(100) NOT NULL PRIMARY KEY,
+    testo VARCHAR(10000),
+    id_xref VARCHAR(100),
+    id_italic VARCHAR(100)
+);
+
+CREATE TABLE assignment(
+    id_assignment VARCHAR(100) NOT NULL PRIMARY KEY,
+    testo VARCHAR(10000),
     id_xref VARCHAR(100),
     id_italic VARCHAR(100)
 );
@@ -644,15 +658,21 @@ CREATE TABLE acomponent(
     id_acoapplicationnotes VARCHAR(100),
     id_msaobjectives VARCHAR(100),
     id_msaapplicationnotes VARCHAR(100),
-    id_msainput VARCHAR(100)
+    id_msainput VARCHAR(100),
+    id_aeevaluator VARCHAR(100),
+    id_aecontent VARCHAR(100),
+    id_aedeveloper VARCHAR(100)
 );
 
 CREATE TABLE acohierarchical(
-    id_acohierarchical VARCHAR(100) PRIMARY KEY
+    id_acohierarchical VARCHAR(100) PRIMARY KEY,
+    acomponent VARCHAR(100)
+
 );
 
 CREATE TABLE acodependsoncomponent(
-    id_acodependsoncomponent VARCHAR(100) PRIMARY KEY
+    id_acodependsoncomponent VARCHAR(100) PRIMARY KEY,
+    acomponent VARCHAR(100)
 );
 
 CREATE TABLE acoobjectives(
@@ -678,7 +698,7 @@ CREATE TABLE acoapplicationnotes(
     id_glossentry VARCHAR(100),
     id_table VARCHAR(100),
     id_example VARCHAR(100)
-    );
+);
 
 CREATE TABLE msaobjectives(
     id_msaobjectives VARCHAR(100) PRIMARY KEY,
@@ -690,7 +710,8 @@ CREATE TABLE msaobjectives(
     id_glossentry VARCHAR(100),
     id_table VARCHAR(100),
     id_example VARCHAR(100)
-    );
+);
+
 CREATE TABLE msaapplicationnotes(
     id_msaapplicationnotes VARCHAR(100) PRIMARY KEY,
     id_subclausess VARCHAR(100),
@@ -701,7 +722,7 @@ CREATE TABLE msaapplicationnotes(
     id_glossentry VARCHAR(100),
     id_table VARCHAR(100),
     id_example VARCHAR(100)
-    );
+);
 
 CREATE TABLE msainput(
     id_msainput VARCHAR(100) PRIMARY KEY,
@@ -713,6 +734,50 @@ CREATE TABLE msainput(
     id_glossentry VARCHAR(100),
     id_table VARCHAR(100),
     id_example VARCHAR(100)
+);
+
+
+CREATE TABLE aeevaluator(
+    id_aeevaluator VARCHAR(100) NOT NULL PRIMARY KEY,
+    id_list VARCHAR(100),
+    id_assignment VARCHAR(100),
+    id_selection VARCHAR(100),
+    id_xref VARCHAR(100),
+    id_mworkunit VARCHAR(100)
+);
+
+CREATE TABLE aedeveloper(
+    id_aedeveloper VARCHAR(100) NOT NULL PRIMARY KEY,
+    id_list VARCHAR(100),
+    id_assignment VARCHAR(100),
+    id_selection VARCHAR(100),
+    id_xref VARCHAR(100),
+    id_mworkunit VARCHAR(100)
+);
+
+CREATE TABLE aecontent(
+    id_aecontent VARCHAR(100) NOT NULL PRIMARY KEY,
+    id_list VARCHAR(100),
+    id_assignment VARCHAR(100),
+    id_selection VARCHAR(100),
+    id_xref VARCHAR(100)
+);
+
+CREATE TABLE mworkunit(
+    id_mworkunit VARCHAR(100) NOT NULL PRIMARY KEY,
+    id_aedcelement VARCHAR(100),
+    id_subclausess VARCHAR(100),
+    id_para VARCHAR(100),
+    id_figure VARCHAR(100),
+    id_acronym VARCHAR(100),
+    id_biblioentry VARCHAR(100),
+    id_glossentry VARCHAR(100),
+    id_table VARCHAR(100),
+    id_example VARCHAR(100)
+);
+
+CREATE TABLE aedcelement(
+    id_aedcelement VARCHAR(100) NOT NULL PRIMARY KEY
 );
 
 
@@ -833,7 +898,7 @@ ADD FOREIGN KEY (id_bold) REFERENCES bold(id_bold) ON UPDATE CASCADE ON DELETE C
 
 ALTER TABLE para
 ADD FOREIGN KEY (id_xref) REFERENCES xref(id_xref) ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE par
+ALTER TABLE para
 ADD FOREIGN KEY (id_url) REFERENCES url(id_url) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE para
 ADD FOREIGN KEY (id_list) REFERENCES list(id_list) ON UPDATE CASCADE ON DELETE CASCADE;
@@ -862,6 +927,11 @@ ADD FOREIGN KEY (id_selection) REFERENCES selection(id_selection) ON UPDATE CASC
 ALTER TABLE selection
 ADD FOREIGN KEY (id_xref) REFERENCES xref(id_xref) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE selection
+ADD FOREIGN KEY (id_italic) REFERENCES italic(id_italic) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE assignment
+ADD FOREIGN KEY (id_xref) REFERENCES xref(id_xref) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE assignment
 ADD FOREIGN KEY (id_italic) REFERENCES italic(id_italic) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE list
@@ -1000,6 +1070,56 @@ ADD FOREIGN KEY (id_table) REFERENCES tablee(id_table) ON UPDATE CASCADE ON DELE
 ALTER TABLE msainput
 ADD FOREIGN KEY (id_example) REFERENCES example(id_example) ON UPDATE CASCADE ON DELETE CASCADE;
 
+ALTER TABLE aeevaluator
+ADD FOREIGN KEY (id_list) REFERENCES list(id_list) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE aeevaluator
+ADD FOREIGN KEY (id_assignment) REFERENCES assignment(id_assignment) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE aeevaluator
+ADD FOREIGN KEY (id_selection) REFERENCES selection(id_selection) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE aeevaluator
+ADD FOREIGN KEY (id_xref) REFERENCES xref(id_xref) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE aeevaluator
+ADD FOREIGN KEY (id_mworkunit) REFERENCES mworkunit(id_mworkunit) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE aedeveloper
+ADD FOREIGN KEY (id_list) REFERENCES list(id_list) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE aedeveloper
+ADD FOREIGN KEY (id_assignment) REFERENCES assignment(id_assignment) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE aedeveloper
+ADD FOREIGN KEY (id_selection) REFERENCES selection(id_selection) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE aedeveloper
+ADD FOREIGN KEY (id_xref) REFERENCES xref(id_xref) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE aedeveloper
+ADD FOREIGN KEY (id_mworkunit) REFERENCES mworkunit(id_mworkunit) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE aecontent
+ADD FOREIGN KEY (id_list) REFERENCES list(id_list) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE aecontent
+ADD FOREIGN KEY (id_assignment) REFERENCES assignment(id_assignment) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE aecontent
+ADD FOREIGN KEY (id_selection) REFERENCES selection(id_selection) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE aecontent
+ADD FOREIGN KEY (id_xref) REFERENCES xref(id_xref) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE mworkunit
+ADD FOREIGN KEY (id_aedcelement) REFERENCES aedcelement(id_aedcelement) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE mworkunit
+ADD FOREIGN KEY (id_subclausess) REFERENCES subclausess(id_subclausess) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE mworkunit
+ADD FOREIGN KEY (id_para) REFERENCES para(id_para) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE mworkunit
+ADD FOREIGN KEY (id_figure) REFERENCES figure(id_figure) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE mworkunit
+ADD FOREIGN KEY (id_acronym) REFERENCES acronym(id_acronym) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE mworkunit
+ADD FOREIGN KEY (id_biblioentry) REFERENCES biblioentry(id_biblioentry) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE mworkunit
+ADD FOREIGN KEY (id_glossentry) REFERENCES glossentry(id_glossentry) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE mworkunit
+ADD FOREIGN KEY (id_table) REFERENCES tablee(id_table) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE mworkunit
+ADD FOREIGN KEY (id_example) REFERENCES example(id_example) ON UPDATE CASCADE ON DELETE CASCADE;
+
 
 ALTER TABLE acomponent
 ADD FOREIGN KEY (id_acohierarchical) REFERENCES acohierarchical(id_acohierarchical) ON UPDATE CASCADE ON DELETE CASCADE;
@@ -1015,6 +1135,12 @@ ALTER TABLE acomponent
 ADD FOREIGN KEY (id_msaapplicationnotes) REFERENCES msaapplicationnotes(id_msaapplicationnotes) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE acomponent
 ADD FOREIGN KEY (id_msainput) REFERENCES msainput(id_msainput) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE acomponent
+ADD FOREIGN KEY (id_aeevaluator) REFERENCES aeevaluator(id_aeevaluator) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE acomponent
+ADD FOREIGN KEY (id_aecontent) REFERENCES aecontent(id_aecontent) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE acomponent
+ADD FOREIGN KEY (id_aedeveloper) REFERENCES aedeveloper(id_aedeveloper) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
 

@@ -42,7 +42,7 @@ public class AClass {
 
     @Getter
     @XmlElement(name = "ma-application-notes")
-    private MaApplicationNotes maApplicationNotes;
+    private MaApplicationNotes maApplicationNotes = new MaApplicationNotes();
 
     @Getter
     @XmlElement(name = "a-family")

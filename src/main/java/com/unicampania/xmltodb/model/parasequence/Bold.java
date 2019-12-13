@@ -21,9 +21,9 @@ public class Bold {
 
     @Getter
     @XmlElement(name = "xref")
-    private List<Xref> xrefs = new ArrayList<>();
+    private List<Xref> xrefs  = new ArrayList<>();
 
     @Getter
     @XmlElement(name = "italic")
-    private List<Italic> italics = new ArrayList<>();
+    private List<Italic> italics  = new ArrayList<>();
 }

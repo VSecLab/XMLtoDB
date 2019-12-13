@@ -1,6 +1,7 @@
 package com.unicampania.xmltodb.model.parasequence;
 
 
+import com.unicampania.xmltodb.model.parasequence.table.Table;
 import lombok.Getter;
 
 
