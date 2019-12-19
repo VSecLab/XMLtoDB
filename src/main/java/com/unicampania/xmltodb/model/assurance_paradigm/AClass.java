@@ -1,6 +1,6 @@
-package com.unicampania.xmltodb.model.aclass;
+package com.unicampania.xmltodb.model.assurance_paradigm;
 
-import com.unicampania.xmltodb.model.fclass.FcIntroduction;
+import com.unicampania.xmltodb.model.assurance_family.AFamily;
 import lombok.Getter;
 
 import javax.xml.bind.annotation.XmlAttribute;

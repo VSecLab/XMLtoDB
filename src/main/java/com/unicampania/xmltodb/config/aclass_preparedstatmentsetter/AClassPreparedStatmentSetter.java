@@ -1,6 +1,6 @@
 package com.unicampania.xmltodb.config.aclass_preparedstatmentsetter;
 
-import com.unicampania.xmltodb.model.aclass.AClass;
+import com.unicampania.xmltodb.model.assurance_paradigm.AClass;
 import org.springframework.batch.item.database.ItemPreparedStatementSetter;
 
 import java.sql.PreparedStatement;

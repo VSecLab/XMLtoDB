@@ -1,4 +1,4 @@
-package com.unicampania.xmltodb.model.aclass;
+package com.unicampania.xmltodb.model.assurance_paradigm;
 
 import com.unicampania.xmltodb.model.parasequence.Para;
 import lombok.Getter;
@@ -7,10 +7,11 @@ import javax.xml.bind.annotation.XmlElement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AcApplicationNotes {
+public class AcIntroduction {
 
     @Getter
     @XmlElement(name = "para")
     private List<Para> p = new ArrayList<>();
 
 }
+

@@ -10,4 +10,13 @@ public class Example {
     @XmlElement(name = "id")
     private String id_example = new String();
 
+    @Getter
+    @XmlElement(name = "exampleterm")
+    private Exampleterm exampleterm;
+
+    @Getter
+    @XmlElement(name = "exampledef")
+    private Exampledef exampledef;
+
+
 }

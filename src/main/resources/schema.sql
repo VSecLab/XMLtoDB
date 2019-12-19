@@ -314,16 +314,16 @@ CREATE TABLE acronymterm(
     testo VARCHAR(1000),
     id_xref VARCHAR(100),
     id_list VARCHAR(100),
-    id_bold VARCHAR(100),
-    id_italic VARCHAR(100)
+    id_bold INT,
+    id_italic INT
 );
 CREATE TABLE acronymdef(
     id_acronymdef VARCHAR(100) NOT NULL PRIMARY KEY,
     testo VARCHAR(1000),
     id_xref VARCHAR(100),
     id_list VARCHAR(100),
-    id_bold VARCHAR(100),
-    id_italic VARCHAR(100)
+    id_bold INT,
+    id_italic INT
 );
 
 CREATE TABLE biblioentry(
@@ -336,16 +336,16 @@ CREATE TABLE biblioterm(
     testo VARCHAR(1000),
     id_xref VARCHAR(100),
     id_list VARCHAR(100),
-    id_bold VARCHAR(100),
-    id_italic VARCHAR(100)
+    id_bold INT,
+    id_italic INT
 );
 CREATE TABLE bibliodef(
     id_bibliodef VARCHAR(100) NOT NULL PRIMARY KEY,
     testo VARCHAR(1000),
     id_xref VARCHAR(100),
     id_list VARCHAR(100),
-    id_bold VARCHAR(100),
-    id_italic VARCHAR(100)
+    id_bold INT,
+    id_italic INT
 );
 
 CREATE TABLE glossentry(
@@ -361,13 +361,13 @@ CREATE TABLE glossterm(
     testo VARCHAR(1000),
     id_xref VARCHAR(100),
     id_list VARCHAR(100),
-    id_bold VARCHAR(100),
-    id_italic VARCHAR(100)
+    id_bold INT,
+    id_italic INT
 );
 CREATE TABLE glossalt(
     id_glossalt VARCHAR(100) NOT NULL PRIMARY KEY,
     testo VARCHAR(1000),
-    id_bold VARCHAR(100)
+    id_bold INT
 );
 CREATE TABLE glossdef(
     id_glossdef VARCHAR(100) NOT NULL PRIMARY KEY,
@@ -375,8 +375,8 @@ CREATE TABLE glossdef(
     id_para VARCHAR(100),
     id_xref VARCHAR(100),
     id_list VARCHAR(100),
-    id_bold VARCHAR(100),
-    id_italic VARCHAR(100)
+    id_bold INT,
+    id_italic INT
 );
 CREATE TABLE glosssource(
     id_glosssource VARCHAR(100) NOT NULL PRIMARY KEY,
@@ -384,8 +384,8 @@ CREATE TABLE glosssource(
     id_para VARCHAR(100),
     id_xref VARCHAR(100),
     id_list VARCHAR(100),
-    id_bold VARCHAR(100),
-    id_italic VARCHAR(100)
+    id_bold INT,
+    id_italic INT
 );
 CREATE TABLE glossnote(
     id_glossnote VARCHAR(100) NOT NULL PRIMARY KEY,
@@ -393,14 +393,16 @@ CREATE TABLE glossnote(
     id_para VARCHAR(100),
     id_xref VARCHAR(100),
     id_list VARCHAR(100),
-    id_bold VARCHAR(100),
-    id_italic VARCHAR(100)
+    id_bold INT,
+    id_italic INT
 );
 
 CREATE TABLE xref(
     id_xref VARCHAR(100) NOT NULL PRIMARY KEY,
-    showw VARCHAR(100)
+    showw VARCHAR(100),
+    ida VARCHAR (100)
 );
+
 
 CREATE TABLE url(
     id_url VARCHAR(100) NOT NULL PRIMARY KEY
@@ -408,17 +410,16 @@ CREATE TABLE url(
 );
 
 CREATE TABLE bold(
-    id_bold VARCHAR(100) NOT NULL PRIMARY KEY,
+    id_bold INT NOT NULL AUTO_INCREMENT,
     testo VARCHAR(1000),
-    id_xref VARCHAR(100),
-    id_italic VARCHAR(100)
+    PRIMARY KEY (id_bold)
+
 );
 
 CREATE TABLE italic(
-    id_italic VARCHAR(100) NOT NULL PRIMARY KEY,
+    id_italic INT NOT NULL AUTO_INCREMENT,
     testo VARCHAR(1000),
-    id_xref VARCHAR(100),
-    id_bold VARCHAR(100)
+    PRIMARY KEY (id_italic)
 );
 
 CREATE TABLE para(
@@ -428,8 +429,8 @@ CREATE TABLE para(
     id_xref VARCHAR(100),
     id_url VARCHAR(100),
     id_list VARCHAR(100),
-    id_bold VARCHAR(100),
-    id_italic VARCHAR(100)
+    id_bold INT,
+    id_italic INT
 );
 
 CREATE TABLE item(
@@ -438,8 +439,8 @@ CREATE TABLE item(
     id_xref VARCHAR(100),
     id_url VARCHAR(100),
     id_list VARCHAR(100),
-    id_bold VARCHAR(100),
-    id_italic VARCHAR(100),
+    id_bold INT,
+    id_italic INT,
     id_selection VARCHAR(100)
 );
 
@@ -447,14 +448,14 @@ CREATE TABLE selection(
     id_selection VARCHAR(100) NOT NULL PRIMARY KEY,
     testo VARCHAR(10000),
     id_xref VARCHAR(100),
-    id_italic VARCHAR(100)
+    id_italic INT
 );
 
 CREATE TABLE assignment(
     id_assignment VARCHAR(100) NOT NULL PRIMARY KEY,
     testo VARCHAR(10000),
     id_xref VARCHAR(100),
-    id_italic VARCHAR(100)
+    id_italic INT
 );
 
 CREATE TABLE list(
@@ -472,16 +473,16 @@ CREATE TABLE exampleterm(
     testo VARCHAR(1000),
     id_xref VARCHAR(100),
     id_list VARCHAR(100),
-    id_bold VARCHAR(100),
-    id_italic VARCHAR(100)
+    id_bold INT,
+    id_italic INT
 );
 CREATE TABLE exampledef(
     id_exampledef VARCHAR(100) NOT NULL PRIMARY KEY,
     testo VARCHAR(1000),
     id_xref VARCHAR(100),
     id_list VARCHAR(100),
-    id_bold VARCHAR(100),
-    id_italic VARCHAR(100)
+    id_bold INT,
+    id_italic INT
 );
 
 CREATE TABLE tablee(
@@ -501,8 +502,6 @@ CREATE TABLE subclausess(
     id_table VARCHAR(100),
     id_example VARCHAR(100)
 );
-
-
 
 
 
@@ -884,16 +883,10 @@ ALTER TABLE glossnote
 ADD FOREIGN KEY (id_italic) REFERENCES italic(id_italic) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
-ALTER TABLE bold
-ADD FOREIGN KEY (id_italic) REFERENCES italic(id_italic) ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE bold
-ADD FOREIGN KEY (id_xref) REFERENCES xref(id_xref) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
-ALTER TABLE italic
-ADD FOREIGN KEY (id_xref) REFERENCES xref(id_xref) ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE italic
-ADD FOREIGN KEY (id_bold) REFERENCES bold(id_bold) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
 
 
 ALTER TABLE para
@@ -1239,3 +1232,5 @@ ALTER TABLE afamily
 ADD FOREIGN KEY (id_aflevellingcriteria) REFERENCES aflevellingcriteria(id_aflevellingcriteria) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE afamily
 ADD FOREIGN KEY (id_afapplicationnotes) REFERENCES afapplicationnotes(id_afapplicationnotes) ON UPDATE CASCADE ON DELETE CASCADE;
+
+

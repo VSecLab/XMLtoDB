@@ -3,7 +3,7 @@ package com.unicampania.xmltodb.config;
 import com.unicampania.xmltodb.config.aclass_preparedstatmentsetter.*;
 import com.unicampania.xmltodb.config.fclass_preparedstatmentsetter.*;
 import com.unicampania.xmltodb.config.parasequence_preparedstatmentsetter.*;
-import com.unicampania.xmltodb.model.aclass.AClass;
+import com.unicampania.xmltodb.model.assurance_paradigm.AClass;
 import com.unicampania.xmltodb.model.fclass.Fclass;
 import com.unicampania.xmltodb.model.parasequence.*;
 import com.unicampania.xmltodb.model.parasequence.table.Table;
@@ -232,7 +232,7 @@ public class BatchConf {
     public JdbcBatchItemWriter<Bold> writerBold() {
         JdbcBatchItemWriter<Bold> writer = new JdbcBatchItemWriter<Bold>();
         writer.setDataSource(dataSource);
-        writer.setSql("INSERT INTO bold(id_bold, testo, id_xref, id_italic) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE id_bold = ?");
+        writer.setSql("INSERT INTO bold(id_bold, testo) VALUES (?,?) ON DUPLICATE KEY UPDATE id_bold = ?");
         writer.setItemPreparedStatementSetter(new BoldPreparedStatmentSetter());
         return writer;
     }
@@ -264,7 +264,7 @@ public class BatchConf {
     public JdbcBatchItemWriter<Italic> writerItalic() {
         JdbcBatchItemWriter<Italic> writer = new JdbcBatchItemWriter<Italic>();
         writer.setDataSource(dataSource);
-        writer.setSql("INSERT INTO italic(id_italic, testo, id_xref, id_bold) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE id_italic = ?");
+        writer.setSql("INSERT INTO italic(id_italic, testo) VALUES (?,?) ON DUPLICATE KEY UPDATE id_italic = ?");
         writer.setItemPreparedStatementSetter(new ItalicPrepareStatmentSetter());
         return writer;
     }
@@ -598,7 +598,7 @@ public class BatchConf {
                 writerMaIntroduction(),
                 writerAcApplicationNotes(),
                 writerMaObjectives(),
-                writerMaApplicationNotes(),
+         //       writerMaApplicationNotes(),
                 writerAFamily()
                 )
         );

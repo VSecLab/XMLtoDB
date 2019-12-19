@@ -76,7 +76,10 @@ public class Item {
         List<String> res = new ArrayList<>();
         for (int i = 0; i < a.size(); i++) {
             if(i==0 && b.getTesto() != null) {
-                res.add(b.getTesto());
+                for (int j = 0; j < b.getTesto().size(); j++) {
+                    res.add(b.getTesto().get(i));
+                }
+
             }
             res.add(a.get(i).replaceAll("\r\n", " ").trim());
 

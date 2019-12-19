@@ -1,6 +1,6 @@
 package com.unicampania.xmltodb.processor;
 
-import com.unicampania.xmltodb.model.aclass.AClass;
+import com.unicampania.xmltodb.model.assurance_paradigm.AClass;
 import org.springframework.batch.item.ItemProcessor;
 
 public class ProcessorAClass implements ItemProcessor<AClass, AClass> {
