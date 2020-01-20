@@ -1,14 +1,14 @@
 <cc>
 <a-class name="Composition" id="aco">
-    <ac-introduction>
-        <para type="normal">
+<ac-introduction>
+    <para type="normal">
         The class <xref id="aco" show="link"/> encompasses five
         families. These families specify assurance requirements that
         are designed to provide confidence that a composed TOE will
         operate securely when relying upon security functionality
         provided by previously evaluated software, firmware or
         hardware components.</para>
-        <para type="normal">
+    <para type="normal">
         Composition involves taking two or more IT entities
         successfully evaluated against CC security assurance
         requirements packages (base components and dependent
@@ -20,7 +20,7 @@
         product that can be installed and integrated into any specific
         environment instance that meets the objectives for the
         environment.</para>
-        <para type="normal">
+    <para type="normal">
         This approach does not provide an alternative approach for the
         evaluation of components. Composition under <xref id="aco" show="id"/> provides a composed TOE integrator a method, which
         can be used as an alternative to other assurance levels
@@ -31,7 +31,7 @@
         <xref id="aco" show="id"/> class, with any references to the
         developer of the base or dependent components clarified as
         such.)</para>
-        <para type="normal">
+    <para type="normal">
         Composed Assurance Packages, as defined in Clauses <xref id="capclause" show="link"/> and <xref id="assurance-requirements-cap-structure" show="link"/>, is an
         assurance scale for composed TOEs. This assurance scale is
         required in addition to EALs because to combine components
@@ -48,9 +48,9 @@
         components and gaining a meaningful result. This is discussed
         further in <xref id="aco-annex" show="link"/>.</para>
 
-        <figure entity="a-class/graphics/aco_family_relation.png" width="textwidth" height="!" title="Relationship between ACO       families and interactions between components" id="aco-family-relation"/>
+    <figure entity="a-class/graphics/aco_family_relation.png" width="textwidth" height="!" title="Relationship between ACO       families and interactions between components" id="aco-family-relation"/>
 
-        <para type="normal">
+    <para type="normal">
         In a composed TOE it is generally the case that one component
         relies on the services provided by another component. The
         component requiring services is termed the dependent component
@@ -64,7 +64,7 @@
         should not be used as augmentations for component TOE
         evaluations, as this would provide no meaningful assurance for
         the component.</para>
-        <para type="normal">
+    <para type="normal">
         The families within the <xref id="aco" show="id"/> class
         interact in a similar manner to the <xref id="adv" show="id"/>, <xref id="ate" show="id"/> and <xref id="ava" show="id"/> classes in a component TOE evaluation and hence
         leverage from the specification of requirements from those
@@ -85,7 +85,7 @@
         as additional subsystems. Therefore, the interfaces between
         the components are seen as interactions between subsystems in
         a component TOE evaluation.</para>
-        <para type="normal">
+    <para type="normal">
         It is possible that the interfaces and supporting behaviour
         descriptions provided for <xref id="aco_dev" show="id"/> are
         incomplete. This is determined during the conduct of <xref id="aco_cor" show="id"/>. The <xref id="aco_cor" show="id"/>
@@ -94,13 +94,13 @@
         components are being used in their evaluated configuration and
         identifies where any specifications are incomplete, which are
         then identified as inputs into testing (<xref id="aco_ctt" show="id"/>) and vulnerability analysis (<xref id="aco_vul" show="id"/>) activities of the composed TOE.</para>
-        <para type="normal">
+    <para type="normal">
         Testing of the composed TOE is performed to determine that the
         composed TOE exhibits the expected behaviour as determined by
         the composed TOE SFRs, and at higher levels demonstrates the
         compatibility of the interfaces between the components of the
         composed TOE.</para>
-        <para type="normal">
+    <para type="normal">
         The vulnerability analysis of the composed TOE leverages from
         the outputs of the vulnerability analysis of the component
         evaluations. The composed TOE vulnerability analysis considers
@@ -110,7 +110,7 @@
         information relating to the components is also performed to
         identify any issues reported in the components since the
         completion of the respective evaluations.</para>
-        <para type="normal">
+    <para type="normal">
         The interaction between the <xref id="aco" show="id"/>
         families is depicted in Figure <xref id="aco-family-interaction" show="link"/> below. This shows by solid arrowed lines where
         the evidence and understanding gained in one family feeds into
@@ -118,19 +118,19 @@
         activity explicitly traces back to the composed TOE SFRs, as
         described above.</para>
 
-        <figure entity="a-class/graphics/aco_family_interaction.png" width="3cm" height="!" title="Relationship between ACO families" id="aco-family-interaction"/>
+    <figure entity="a-class/graphics/aco_family_interaction.png" width="3cm" height="!" title="Relationship between ACO families" id="aco-family-interaction"/>
 
-        <para type="normal">
+    <para type="normal">
         Further discussion of the definition and interactions within
         composed TOEs is provided in <xref id="aco-annex" show="link"/>.</para>
-    </ac-introduction>
-    <ac-overview>
-        <para type="normal">
+</ac-introduction>
+<ac-overview>
+<para type="normal">
     Assurance class <xref id="aco" show="link"/> defines
     requirements of the information necessary to ensure that two
     or more components, which have themselves been the subject of
     a CC evaluation, can be integrated in a secure manner.</para>
-        <para type="normal">
+<para type="normal">
     The <xref id="aco" show="link"/> assurance requirements will
     be applied to the composed TOE to:
     <list type="enumerated">
@@ -144,418 +144,373 @@
             search for any vulnerabilities introduced through
             composing the base and dependent components into a single
             composed TOE entity.</item></list></para>
-    </ac-overview>
-    <ma-introduction>
+</ac-overview>
+<ma-introduction>
+<para type="normal">
+    The goal of this activity is to determine whether the
+    components can be integrated in a secure manner, as defined in
+    the ST for the composed TOE. This is achieved through
+    examination and testing of the interfaces between the
+    components, supported by examination of the design of the
+    components and the conduct of vulnerability analysis.</para>
+</ma-introduction>
+<ma-application-notes>
+<para type="normal">
+    The <xref id="aco_rel" show="link"/> family identifies where
+    the dependent component is reliant upon IT in its operational
+    environment (satisfied by a base component in the composed TOE
+    evaluation) in order to provide its own security
+    services. This reliance is identified in terms of the
+    interfaces expected by the dependent component to be provided
+    by the base component. <xref id="aco_dev" show="link"/> then
+    determines which interfaces of the base component were
+    considered (as TSFI) during the component evaluation of the
+    base component.</para>
+<para type="normal">
+    It should be noted that <xref id="aco_rel" show="link"/> does
+    not cover other evidence that may be needed to address the
+    technical integration problem of composing components
+    (e.g. descriptions of non-TSF interfaces of the operating
+    system, rules for integration, etc.). This is outside the
+    security assessment of the composition and is a functional
+    composition issue.</para>
+<para type="normal">
+    As part of <xref id="aco_ctt" show="link"/> the evaluator will
+    perform testing of the composed TOE SFRs at the composed TOE
+    interfaces and of the interfaces of the base component relied
+    upon by the dependent component to confirm they operate as
+    specified. The subset selected will consider the possible
+    effects of changes to the configuration/use of the base
+    component as used in the composed TOE. These changes are
+    identified from the configuration of the base component
+    determined during the base component evaluation. The developer
+    will provide test evidence for each of the base component
+    interfaces (the requirements for coverage are consistent with
+    those applied to the evaluation of the base component).</para>
+<para type="normal">
+    <xref id="aco_cor" show="link"/> requires the evaluator to
+    determine whether the appropriate assurance measures have been
+    applied to the base component, and whether the base component
+    is being used in its evaluated configuration. This includes
+    determination of whether all security functionality required
+    by the dependent component was within the TSF of the base
+    component. The <xref id="aco_cor" show="link"/> requirement
+    may be met through the production of evidence that each of
+    these is demonstrated to be upheld. This evidence may be in
+    the form of the security target and a public report of the
+    component evaluation (e.g. certification report).</para>
+<para type="normal">
+    If, on the other hand, one of the above have not been upheld,
+    then it may be possible that an argument can be made as to why
+    the assurance gained during an original evaluation is
+    unaffected. If this is not possible then additional evaluation
+    evidence for those aspects of the base component not covered
+    may have to be provided. This material is then assessed in
+    <xref id="aco_dev" show="link"/>.</para>
+<para type="normal">
+    For example, it may be the case as described in the
+    Interactions between entities (see Annex <xref show="none" id="aco-interactions-IT-entities"/> in CC Part 3) that the
+    dependent component requires the base component to provide
+    more security functionality in the composed TOE than included
+    in the base component evaluation. This would be determined
+    during the application of the <xref id="aco_rel" show="link"/>
+    and <xref id="aco_dev" show="link"/> families. In this case
+    the composition rationale evidence provided for <xref id="aco_cor" show="link"/> would demonstrate that the
+    assurance gained from the base component evaluation is
+    unaffected. This may be achieved by means including:
+    <list type="enumerated">
+        <item>
+            Performing a re-evaluation of the base component focusing
+            on the evidence relating to the extended part of the
+            TSF;</item>
+        <item>
+            Demonstrating that the extended part of the TSF cannot
+            affect other portions of the TSF, and providing evidence
+            that the extended part of the TSF provides the necessary
+            security functionality.</item></list></para>
+</ma-application-notes>
+<a-family name="Composition rationale" id="aco_cor">
+<af-objectives>
+    <para type="normal">
+        This family addresses the requirement to demonstrate that
+        the base component can provide an appropriate level of
+        assurance for use in composition.</para>
+</af-objectives>
+<af-overview>
+    <para type="normal">
+        The <xref id="aco_cor" show="link"/> family is used to
+        determine whether or not the appropriate assurance measures
+        have been applied to the base component for successful
+        integration in the composed TOE. That is, the SARs claimed
+        by the base component are consistent with the SARs in the
+        assurance package for the composed TOE. (e.g. if the
+        assurance package for the composed TOE included <xref id="aco_dev.3" show="link"/>, a base component that was
+        evaluated against <xref id="adv_fsp.2" show="link"/> would
+        not have had the appropriate assurance measures applied, as
+        insufficient design evidence would have been
+        examined.)</para>
+    <para type="normal">
+        The <xref id="aco_cor" show="link"/> family calls for
+        evidence that the appropriate assurance is provided, without
+        being specific about how this is achieved. If the
+        appropriate evidence is not available, then it may be
+        necessary to report an assessment of the residual risk to
+        assist consumers of the composed TOE
+        (e.g. accreditors). This report would need to identify the
+        change to the base component that may have an effect on the
+        assurance gained during the original evaluation, along with
+        any known effects.</para>
+    <para type="normal"/>
+</af-overview>
+<af-levelling-criteria>
+    <para type="normal">
+        There is only a single component in this family.</para>
+</af-levelling-criteria>
+<a-component name="Composition rationale" id="aco_cor.1">
+    <aco-dependsoncomponent acomponent="aco_dev.1"/>
+    <aco-dependsoncomponent acomponent="alc_cmc.1"/>
+    <aco-dependsoncomponent acomponent="aco_rel.1"/>
+    <msa-input>
         <para type="normal">
-            The goal of this activity is to determine whether the
-            components can be integrated in a secure manner, as defined in
-            the ST for the composed TOE. This is achieved through
-            examination and testing of the interfaces between the
-            components, supported by examination of the design of the
-            components and the conduct of vulnerability analysis.
-        </para>
-    </ma-introduction>
-    <ma-application-notes>
-        <para type="normal">
-            The <xref id="aco_rel" show="link"/> family identifies where
-            the dependent component is reliant upon IT in its operational
-            environment (satisfied by a base component in the composed TOE
-            evaluation) in order to provide its own security
-            services. This reliance is identified in terms of the
-            interfaces expected by the dependent component to be provided
-            by the base component. <xref id="aco_dev" show="link"/> then
-            determines which interfaces of the base component were
-            considered (as TSFI) during the component evaluation of the
-            base component.
-        </para>
-        <para type="normal">
-            It should be noted that <xref id="aco_rel" show="link"/> does
-            not cover other evidence that may be needed to address the
-            technical integration problem of composing components
-            (e.g. descriptions of non-TSF interfaces of the operating
-            system, rules for integration, etc.). This is outside the
-            security assessment of the composition and is a functional
-            composition issue.
-        </para>
-        <para type="normal">
-            As part of <xref id="aco_ctt" show="link"/> the evaluator will
-            perform testing of the composed TOE SFRs at the composed TOE
-            interfaces and of the interfaces of the base component relied
-            upon by the dependent component to confirm they operate as
-            specified. The subset selected will consider the possible
-            effects of changes to the configuration/use of the base
-            component as used in the composed TOE. These changes are
-            identified from the configuration of the base component
-            determined during the base component evaluation. The developer
-            will provide test evidence for each of the base component
-            interfaces (the requirements for coverage are consistent with
-            those applied to the evaluation of the base component).
-        </para>
-        <para type="normal">
-            <xref id="aco_cor" show="link"/> requires the evaluator to
-            determine whether the appropriate assurance measures have been
-            applied to the base component, and whether the base component
-            is being used in its evaluated configuration. This includes
-            determination of whether all security functionality required
-            by the dependent component was within the TSF of the base
-            component. The <xref id="aco_cor" show="link"/> requirement
-            may be met through the production of evidence that each of
-            these is demonstrated to be upheld. This evidence may be in
-            the form of the security target and a public report of the
-            component evaluation (e.g. certification report).
-        </para>
-        <para type="normal">
-            If, on the other hand, one of the above have not been upheld,
-            then it may be possible that an argument can be made as to why
-            the assurance gained during an original evaluation is
-            unaffected. If this is not possible then additional evaluation
-            evidence for those aspects of the base component not covered
-            may have to be provided. This material is then assessed in
-            <xref id="aco_dev" show="link"/>.
-        </para>
-        <para type="normal">
-            For example, it may be the case as described in the
-            Interactions between entities (see Annex <xref show="none" id="aco-interactions-IT-entities"/> in CC Part 3) that the
-            dependent component requires the base component to provide
-            more security functionality in the composed TOE than included
-            in the base component evaluation. This would be determined
-            during the application of the <xref id="aco_rel" show="link"/>
-            and <xref id="aco_dev" show="link"/> families. In this case
-            the composition rationale evidence provided for <xref id="aco_cor" show="link"/> would demonstrate that the
-            assurance gained from the base component evaluation is
-            unaffected. This may be achieved by means including:
+            The evaluation evidence for this sub-activity is:
             <list type="enumerated">
                 <item>
-                    Performing a re-evaluation of the base component focusing
-                    on the evidence relating to the extended part of the
-                    TSF;</item>
+                    the composed ST; </item>
                 <item>
-                    Demonstrating that the extended part of the TSF cannot
-                    affect other portions of the TSF, and providing evidence
-                    that the extended part of the TSF provides the necessary
-                    security functionality.
+                    the composition rationale; </item>
+                <item>
+                    the reliance information;</item>
+                <item>
+                    the development information;</item>
+                <item>
+                    unique identifier.
                 </item>
-            </list>
-        </para>
-    </ma-application-notes>
-        <a-family name="Composition rationale" id="aco_cor">
-            <af-objectives>
+            </list></para>
+    </msa-input>
+    <ae-developer id="aco_cor.1.1d">
+        The developer shall provide composition rationale for the
+        base component.
+    </ae-developer>
+    <ae-content id="aco_cor.1.1c">
+        The composition rationale shall demonstrate that a level of
+        assurance at least as high as that of the dependent
+        component has been obtained for the support functionality of
+        the base component, when the base component is configured as
+        required to support the TSF of the dependent component.
+    </ae-content>
+    <ae-evaluator id="aco_cor.1.1e">
+        The evaluator shall confirm that the information meets all
+        requirements for content and presentation of evidence.
+        <m-workunit id="aco_cor.1-1">
+            <ae-dc-element id="aco_cor.1.1c"/>
+            <para type="normal">
+                The evaluator shall examine the correspondence analysis
+                with the development information and the reliance
+                information to identify the interfaces that are relied
+                upon by the dependent component which are not detailed
+                in the development information.</para>
+            <para type="normal">
+                The evaluator's goal in this work unit is two fold:
+                <list type="enumerated">
+                    <item>
+                        to determine which interfaces relied upon by the
+                        dependent component have had the appropriate
+                        assurance measures applied.</item>
+                    <item>
+                        to determine that the assurance package applied to
+                        the base component during the base component
+                        evaluation contained either the same assurance
+                        requirements as those in the package applied to the
+                        dependent component during its' evaluation, or
+                        hierarchically higher assurance requirements.</item>
+                </list></para>
+            <para type="normal">
+                The evaluator may use the correspondence tracing in the
+                development information developed during the <xref id="aco_dev" show="link"/> activities (e.g. <xref id="aco_dev.1-2" show="link"/>, <xref id="aco_dev.2-4" show="link"/>, <xref id="aco_dev.3-6" show="link"/>) to
+                help identify the interfaces identified in the reliance
+                information that are not considered in the development
+                information.</para>
+            <para type="normal">
+                The evaluator will record the SFR-enforcing interfaces
+                described in the reliance information that are not
+                included in the development information. These will
+                provide input to <xref id="aco_cor.1-3" show="link"/>
+                work unit, helping to identify the portions of the base
+                component in which further assurance is required.</para>
+            <para type="normal">
+                If the both the base and dependent components were
+                evaluated against the same assurance package, then the
+                determination of whether the level of assurance in the
+                portions within the base component evaluation is at
+                least as high as that of the dependent component is
+                trivial. If however, the assurance packages applied to
+                the components during the component evaluations differ,
+                the evaluator needs to determine that the assurance
+                requirements applied to the base component are all
+                hierarchically higher to the assurance requirements
+                applied to the dependent component.</para>
+        </m-workunit>
+        <m-workunit id="aco_cor.1-2">
+            <ae-dc-element id="aco_cor.1.1c"/>
+            <para type="normal">
+                The evaluator shall examine the composition rationale to
+                determine, for those included base component interfaces
+                on which the dependent TSF relies, whether the interface
+                was considered during the evaluation of the base
+                component.</para>
+            <para type="normal">
+                The ST, component public evaluation report (e.g. certification
+                report) and guidance documents for the base component all
+                provide information on the scope and boundary of the base
+                component. The ST provides details of the logical scope and
+                boundary of the composed TOE, allowing the evaluator to
+                determine whether an interface relates to a portion of the
+                product that was within the scope of the evaluation. The
+                guidance documentation provides details of use of all interfaces
+                for the composed TOE. Although the guidance documentation may
+                include details of interfaces in the product that are not within
+                the scope of the evaluation, any such interfaces should be
+                identifiable, either from the scoping information in the ST or
+                through a portion of the guidance that deals with the evaluated
+                configuration. The public evaluation report may provide any
+                additional constraints on the use of the composed TOE that are
+                necessary.</para>
+            <para type="normal">
+                Therefore, the combination of these inputs allows the
+                evaluator to determine whether an interface described in
+                the composition rationale has the necessary assurance
+                associated with it, or whether further assurance is
+                required. The evaluator will record those interfaces of
+                the base component for which additional assurance is
+                required, for consideration during <xref id="aco_cor.1-3" show="link"/>.</para>
+        </m-workunit>
+        <m-workunit id="aco_cor.1-3">
+            <ae-dc-element id="aco_cor.1.1c"/>
+            <para type="normal">
+                The evaluator shall examine the composition rationale to
+                determine that the necessary assurance measures have
+                been applied to the base component.</para>
+            <para type="normal">
+                The evaluation verdicts, and resultant assurance, for
+                the base component can be reused provided the same
+                portions of the base component are used in the composed
+                TOE and they are used in a consistent manner.</para>
+            <para type="normal">
+                In order to determine whether the necessary assurance
+                measures have already been applied to the component, and
+                the portions of the component for which assurance
+                measures still need to be applied, the evaluator should
+                use the output of the <xref show="id" id="aco_dev"/>.*.2E action and the work units <xref id="aco_cor.1-1" show="link"/> and <xref id="aco_cor.1-2" show="link"/>:</para>
+            <para type="normal">
+                <list type="enumerated">
+                    <item>
+                        For those interfaces identified in the reliance
+                        information (<xref id="aco_rel" show="link"/>), but
+                        not discussed in development information (<xref id="aco_dev" show="link"/>), additional information
+                        is required. (Identified in <xref id="aco_cor.1-1" show="link"/>.)</item>
+                    <item>
+                        For those interfaces used inconsistently in the
+                        composed TOE from the base component (difference
+                        between the information provided in <xref id="aco_dev" show="link"/> and <xref id="aco_rel" show="link"/> the impact of the differences in use
+                        need to be considered. (Identified in <xref id="aco_dev" show="id"/>.*.2E.)</item>
+                    <item>
+                        For those interfaces identified in composition
+                        rationale for which no assurance has previously been
+                        gained, additional information is
+                        required. (Identified in <xref id="aco_cor.1-2" show="link"/>.)</item>
+                    <item>
+                        For those interfaces consistently described in the
+                        reliance information, composition rationale and the
+                        development information, no further action is
+                        required as the results from the base component
+                        evaluation can be re-used.</item></list></para>
+            <para type="normal">
+                The interfaces of the base component reported to be
+                required by the reliance information but not included in
+                the development information indicate the portions of the
+                base component where further assurance is required. The
+                interfaces identify the entry points into the base
+                component.</para>
+            <para type="normal">
+                For those interfaces included in both the development
+                information and reliance information, the evaluator is
+                to determine whether the interfaces are being used in
+                the composed TOE in a manner that is consistent with the
+                base component evaluation. The method of use of the
+                interface will be considered during the <xref id="aco_dev" show="link"/> activities to determine that
+                the use of the interface is consistent in both the base
+                component and the composed TOE. The remaining
+                consideration is the determination of whether the
+                configurations of the base component and the composed
+                TOE are consistent. To determine this, the evaluator
+                will consider the guidance documentation of each to
+                ensure they are consistent (see further guidance below
+                regarding consistent guidance documentation). Any
+                deviation in the documentation will be further analysed
+                by the evaluation to determine the possible
+                effects.</para>
+            <para type="normal">
+                For those interfaces that are consistently described in
+                the reliance information and development information,
+                and for which the guidance is consistent for the base
+                component and the composed TOE, the required level of
+                assurance has been provided.</para>
+            <para type="normal">
+                The following subsubclauses provide guidance on how to
+                determine consistency between assurance gained in the
+                base component, the evidence provided for the composed
+                TOE, and the analysis performed by the evaluator in the
+                instances where inconsistencies are identified.</para>
+            <subclause title="Development" id="aco_cor_1_development">
                 <para type="normal">
-                    This family addresses the requirement to demonstrate that
-                    the base component can provide an appropriate level of
-                    assurance for use in composition.
-                </para>
-            </af-objectives>
-            <af-overview>
+                    The reliance information identifies the interfaces in
+                    the dependent component that are to be matched by the
+                    base component. If an interface identified in the
+                    reliance information is not identified in the
+                    development information, then the composition
+                    rationale is to provide a justification of how the
+                    base component provides the required
+                    interfaces.</para>
                 <para type="normal">
-                    The <xref id="aco_cor" show="link"/> family is used to
-                    determine whether or not the appropriate assurance measures
-                    have been applied to the base component for successful
-                    integration in the composed TOE. That is, the SARs claimed
-                    by the base component are consistent with the SARs in the
-                    assurance package for the composed TOE. (e.g. if the
-                    assurance package for the composed TOE included <xref id="aco_dev.3" show="link"/>, a base component that was
-                    evaluated against <xref id="adv_fsp.2" show="link"/> would
-                    not have had the appropriate assurance measures applied, as
-                    insufficient design evidence would have been
-                    examined.)
-                </para>
+                    If an interface identified in the reliance information
+                    is identified in the development information, but
+                    there are inconsistencies between the descriptions,
+                    further analysis is required. The evaluator identifies
+                    the differences in use of the base component as
+                    considered in the base component evaluation and the
+                    composed TOE evaluation. The evaluator will devise
+                    testing to be performed (during the conduct of <xref id="aco_ctt" show="link"/>) to test the
+                    interface.</para>
                 <para type="normal">
-                    The <xref id="aco_cor" show="link"/> family calls for
-                    evidence that the appropriate assurance is provided, without
-                    being specific about how this is achieved. If the
-                    appropriate evidence is not available, then it may be
-                    necessary to report an assessment of the residual risk to
-                    assist consumers of the composed TOE
-                    (e.g. accreditors). This report would need to identify the
-                    change to the base component that may have an effect on the
-                    assurance gained during the original evaluation, along with
-                    any known effects.
-                </para>
-                <para type="normal"/>
-            </af-overview>
-            <af-levelling-criteria>
+                    The patch status of the base and dependent components
+                    as used in the composed TOE should be compared to the
+                    patch status of the components during the component
+                    evaluations. If any patches have been applied to the
+                    components, the composition rationale is to include
+                    details of the patches, including any potential impact
+                    to the SFRs of the evaluated component. The evaluator
+                    should consider the details of the changes provided
+                    and verify the accuracy of the potential impact of the
+                    change on the component SFRs. The evaluator should
+                    then consider whether the changes made by the patch
+                    should be verified through testing, and will identify
+                    the necessary testing approach.  The testing may take
+                    the form of repeating the applicable
+                    evaluator/developer testing performed for the
+                    component evaluation of the component or it may be
+                    necessary for the evaluator to devise new tests to
+                    confirm the modified component.</para>
                 <para type="normal">
-                    There is only a single component in this family.
-                </para>
-            </af-levelling-criteria>
-            <a-component name="Composition rationale" id="aco_cor.1">
-                <aco-dependsoncomponent acomponent="aco_dev.1"/>
-                <aco-dependsoncomponent acomponent="alc_cmc.1"/>
-                <aco-dependsoncomponent acomponent="aco_rel.1"/>
-                <msa-input>
-                    <para type="normal">
-                        The evaluation evidence for this sub-activity is:
-                        <list type="enumerated">
-                            <item>
-                                the composed ST;
-                            </item>
-                            <item>
-                                the composition rationale;
-                            </item>
-                            <item>
-                                the reliance information;
-                            </item>
-                            <item>
-                                the development information;
-                            </item>
-                            <item>
-                                unique identifier.
-                            </item>
-                        </list>
-                    </para>
-                </msa-input>
-                <ae-developer id="aco_cor.1.1d">
-                    The developer shall provide composition rationale for the
-                    base component.
-                </ae-developer>
-                <ae-content id="aco_cor.1.1c">
-                    The composition rationale shall demonstrate that a level of
-                    assurance at least as high as that of the dependent
-                    component has been obtained for the support functionality of
-                    the base component, when the base component is configured as
-                    required to support the TSF of the dependent component.
-                </ae-content>
-                <ae-evaluator id="aco_cor.1.1e">
-                    The evaluator shall confirm that the information meets all
-                    requirements for content and presentation of evidence.
-                    <m-workunit id="aco_cor.1-1">
-                        <ae-dc-element id="aco_cor.1.1c"/>
-                        <para type="normal">
-                            The evaluator shall examine the correspondence analysis
-                            with the development information and the reliance
-                            information to identify the interfaces that are relied
-                            upon by the dependent component which are not detailed
-                            in the development information.
-                        </para>
-                        <para type="normal">
-                            The evaluator's goal in this work unit is two fold:
-                            <list type="enumerated">
-                                <item>
-                                    to determine which interfaces relied upon by the
-                                    dependent component have had the appropriate
-                                    assurance measures applied.
-                                </item>
-                                <item>
-                                    to determine that the assurance package applied to
-                                    the base component during the base component
-                                    evaluation contained either the same assurance
-                                    requirements as those in the package applied to the
-                                    dependent component during its' evaluation, or
-                                    hierarchically higher assurance requirements.
-                                </item>
-                            </list>
-                        </para>
-                        <para type="normal">
-                            The evaluator may use the correspondence tracing in the
-                            development information developed during the <xref id="aco_dev" show="link"/> activities (e.g. <xref id="aco_dev.1-2" show="link"/>, <xref id="aco_dev.2-4" show="link"/>, <xref id="aco_dev.3-6" show="link"/>) to
-                            help identify the interfaces identified in the reliance
-                            information that are not considered in the development
-                            information.
-                        </para>
-                        <para type="normal">
-                            The evaluator will record the SFR-enforcing interfaces
-                            described in the reliance information that are not
-                            included in the development information. These will
-                            provide input to <xref id="aco_cor.1-3" show="link"/>
-                            work unit, helping to identify the portions of the base
-                            component in which further assurance is required.
-                        </para>
-                        <para type="normal">
-                            If the both the base and dependent components were
-                            evaluated against the same assurance package, then the
-                            determination of whether the level of assurance in the
-                            portions within the base component evaluation is at
-                            least as high as that of the dependent component is
-                            trivial. If however, the assurance packages applied to
-                            the components during the component evaluations differ,
-                            the evaluator needs to determine that the assurance
-                            requirements applied to the base component are all
-                            hierarchically higher to the assurance requirements
-                            applied to the dependent component.
-                        </para>
-                    </m-workunit>
-                    <m-workunit id="aco_cor.1-2">
-                        <ae-dc-element id="aco_cor.1.1c"/>
-                        <para type="normal">
-                            The evaluator shall examine the composition rationale to
-                            determine, for those included base component interfaces
-                            on which the dependent TSF relies, whether the interface
-                            was considered during the evaluation of the base
-                            component.
-                        </para>
-                        <para type="normal">
-                            The ST, component public evaluation report (e.g. certification
-                            report) and guidance documents for the base component all
-                            provide information on the scope and boundary of the base
-                            component. The ST provides details of the logical scope and
-                            boundary of the composed TOE, allowing the evaluator to
-                            determine whether an interface relates to a portion of the
-                            product that was within the scope of the evaluation. The
-                            guidance documentation provides details of use of all interfaces
-                            for the composed TOE. Although the guidance documentation may
-                            include details of interfaces in the product that are not within
-                            the scope of the evaluation, any such interfaces should be
-                            identifiable, either from the scoping information in the ST or
-                            through a portion of the guidance that deals with the evaluated
-                            configuration. The public evaluation report may provide any
-                            additional constraints on the use of the composed TOE that are
-                            necessary.
-                        </para>
-                        <para type="normal">
-                            Therefore, the combination of these inputs allows the
-                            evaluator to determine whether an interface described in
-                            the composition rationale has the necessary assurance
-                            associated with it, or whether further assurance is
-                            required. The evaluator will record those interfaces of
-                            the base component for which additional assurance is
-                            required, for consideration during <xref id="aco_cor.1-3" show="link"/>.
-                        </para>
-                    </m-workunit>
-                    <m-workunit id="aco_cor.1-3">
-                        <ae-dc-element id="aco_cor.1.1c"/>
-                        <para type="normal">
-                            The evaluator shall examine the composition rationale to
-                            determine that the necessary assurance measures have
-                            been applied to the base component.
-                        </para>
-                        <para type="normal">
-                            The evaluation verdicts, and resultant assurance, for
-                            the base component can be reused provided the same
-                            portions of the base component are used in the composed
-                            TOE and they are used in a consistent manner.
-                        </para>
-                        <para type="normal">
-                            In order to determine whether the necessary assurance
-                            measures have already been applied to the component, and
-                            the portions of the component for which assurance
-                            measures still need to be applied, the evaluator should
-                            use the output of the <xref show="id" id="aco_dev"/>.*.2E action and the work units <xref id="aco_cor.1-1" show="link"/> and <xref id="aco_cor.1-2" show="link"/>:
-                        </para>
-                        <para type="normal">
-                            <list type="enumerated">
-                                <item>
-                                    For those interfaces identified in the reliance
-                                    information (<xref id="aco_rel" show="link"/>), but
-                                    not discussed in development information (<xref id="aco_dev" show="link"/>), additional information
-                                    is required. (Identified in <xref id="aco_cor.1-1" show="link"/>.)
-                                </item>
-                                <item>
-                                    For those interfaces used inconsistently in the
-                                    composed TOE from the base component (difference
-                                    between the information provided in <xref id="aco_dev" show="link"/> and <xref id="aco_rel" show="link"/> the impact of the differences in use
-                                    need to be considered. (Identified in <xref id="aco_dev" show="id"/>.*.2E.)
-                                </item>
-                                <item>
-                                    For those interfaces identified in composition
-                                    rationale for which no assurance has previously been
-                                    gained, additional information is
-                                    required. (Identified in <xref id="aco_cor.1-2" show="link"/>.)
-                                </item>
-                                <item>
-                                    For those interfaces consistently described in the
-                                    reliance information, composition rationale and the
-                                    development information, no further action is
-                                    required as the results from the base component
-                                    evaluation can be re-used.
-                                </item>
-                            </list>
-                        </para>
-                        <para type="normal">
-                            The interfaces of the base component reported to be
-                            required by the reliance information but not included in
-                            the development information indicate the portions of the
-                            base component where further assurance is required. The
-                            interfaces identify the entry points into the base
-                            component.
-                        </para>
-                        <para type="normal">
-                            For those interfaces included in both the development
-                            information and reliance information, the evaluator is
-                            to determine whether the interfaces are being used in
-                            the composed TOE in a manner that is consistent with the
-                            base component evaluation. The method of use of the
-                            interface will be considered during the <xref id="aco_dev" show="link"/> activities to determine that
-                            the use of the interface is consistent in both the base
-                            component and the composed TOE. The remaining
-                            consideration is the determination of whether the
-                            configurations of the base component and the composed
-                            TOE are consistent. To determine this, the evaluator
-                            will consider the guidance documentation of each to
-                            ensure they are consistent (see further guidance below
-                            regarding consistent guidance documentation). Any
-                            deviation in the documentation will be further analysed
-                            by the evaluation to determine the possible
-                            effects.
-                        </para>
-                        <para type="normal">
-                            For those interfaces that are consistently described in
-                            the reliance information and development information,
-                            and for which the guidance is consistent for the base
-                            component and the composed TOE, the required level of
-                            assurance has been provided.
-                        </para>
-                        <para type="normal">
-                            The following subsubclauses provide guidance on how to
-                            determine consistency between assurance gained in the
-                            base component, the evidence provided for the composed
-                            TOE, and the analysis performed by the evaluator in the
-                            instances where inconsistencies are identified.
-                        </para>
-                        <subclause title="Development" id="aco_cor_1_development">
-                            <para type="normal">
-                                The reliance information identifies the interfaces in
-                                the dependent component that are to be matched by the
-                                base component. If an interface identified in the
-                                reliance information is not identified in the
-                                development information, then the composition
-                                rationale is to provide a justification of how the
-                                base component provides the required
-                                interfaces.
-                            </para>
-                            <para type="normal">
-                                If an interface identified in the reliance information
-                                is identified in the development information, but
-                                there are inconsistencies between the descriptions,
-                                further analysis is required. The evaluator identifies
-                                the differences in use of the base component as
-                                considered in the base component evaluation and the
-                                composed TOE evaluation. The evaluator will devise
-                                testing to be performed (during the conduct of <xref id="aco_ctt" show="link"/>) to test the
-                                interface.
-                            </para>
-                            <para type="normal">
-                                The patch status of the base and dependent components
-                                as used in the composed TOE should be compared to the
-                                patch status of the components during the component
-                                evaluations. If any patches have been applied to the
-                                components, the composition rationale is to include
-                                details of the patches, including any potential impact
-                                to the SFRs of the evaluated component. The evaluator
-                                should consider the details of the changes provided
-                                and verify the accuracy of the potential impact of the
-                                change on the component SFRs. The evaluator should
-                                then consider whether the changes made by the patch
-                                should be verified through testing, and will identify
-                                the necessary testing approach.  The testing may take
-                                the form of repeating the applicable
-                                evaluator/developer testing performed for the
-                                component evaluation of the component or it may be
-                                necessary for the evaluator to devise new tests to
-                                confirm the modified component.
-                            </para>
-                            <para type="normal">
-                                If any of the individual components have been the
-                                subject of assurance continuity activities since the
-                                completion of the component evaluation, the evaluator
-                                will consider the changes assessed in the assurance
-                                continuity activities during the independent
-                                vulnerability analysis activity for the composed TOE
-                                (in <xref id="aco_vul" show="link"/>).
-                            </para>
-                        </subclause>
-                        <subclause title="Guidance" id="aco_cor_1_guidance">
-                            <para type="normal">
+                    If any of the individual components have been the
+                    subject of assurance continuity activities since the
+                    completion of the component evaluation, the evaluator
+                    will consider the changes assessed in the assurance
+                    continuity activities during the independent
+                    vulnerability analysis activity for the composed TOE
+                    (in <xref id="aco_vul" show="link"/>).</para>
+            </subclause>
+            <subclause title="Guidance" id="aco_cor_1_guidance">
+                <para type="normal">
                     The guidance for the composed TOE is likely to make
                     substantial reference out to the guidance for the
                     individual components.  The minimal guidance expected

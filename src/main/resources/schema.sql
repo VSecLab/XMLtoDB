@@ -287,6 +287,8 @@ DROP TABLE IF EXISTS exampledef;
 DROP TABLE IF EXISTS tablee;
 DROP TABLE IF EXISTS subclausess;
 DROP TABLE IF EXISTS xref;
+
+DROP TABLE IF EXISTS relation;
 SET FOREIGN_KEY_CHECKS = 1;
 
 
@@ -294,6 +296,11 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 
 
+CREATE TABLE relation(
+    id_padre VARCHAR(100),
+    id_figlio VARCHAR (100),
+    PRIMARY KEY (id_padre, id_figlio)
+);
 
 
 CREATE TABLE figure(
@@ -313,7 +320,7 @@ CREATE TABLE acronymterm(
     id_acronymterm VARCHAR(100) NOT NULL PRIMARY KEY,
     testo VARCHAR(1000),
     id_xref VARCHAR(100),
-    id_list VARCHAR(100),
+    id_list INT,
     id_bold INT,
     id_italic INT
 );
@@ -321,7 +328,7 @@ CREATE TABLE acronymdef(
     id_acronymdef VARCHAR(100) NOT NULL PRIMARY KEY,
     testo VARCHAR(1000),
     id_xref VARCHAR(100),
-    id_list VARCHAR(100),
+    id_list INT,
     id_bold INT,
     id_italic INT
 );
@@ -335,7 +342,7 @@ CREATE TABLE biblioterm(
     id_biblioterm VARCHAR(100) NOT NULL PRIMARY KEY,
     testo VARCHAR(1000),
     id_xref VARCHAR(100),
-    id_list VARCHAR(100),
+    id_list INT,
     id_bold INT,
     id_italic INT
 );
@@ -343,7 +350,7 @@ CREATE TABLE bibliodef(
     id_bibliodef VARCHAR(100) NOT NULL PRIMARY KEY,
     testo VARCHAR(1000),
     id_xref VARCHAR(100),
-    id_list VARCHAR(100),
+    id_list INT,
     id_bold INT,
     id_italic INT
 );
@@ -360,7 +367,7 @@ CREATE TABLE glossterm(
     id_glossterm VARCHAR(100) NOT NULL PRIMARY KEY,
     testo VARCHAR(1000),
     id_xref VARCHAR(100),
-    id_list VARCHAR(100),
+    id_list INT,
     id_bold INT,
     id_italic INT
 );
@@ -374,7 +381,7 @@ CREATE TABLE glossdef(
     testo VARCHAR(1000),
     id_para VARCHAR(100),
     id_xref VARCHAR(100),
-    id_list VARCHAR(100),
+    id_list INT,
     id_bold INT,
     id_italic INT
 );
@@ -383,7 +390,7 @@ CREATE TABLE glosssource(
     testo VARCHAR(1000),
     id_para VARCHAR(100),
     id_xref VARCHAR(100),
-    id_list VARCHAR(100),
+    id_list INT,
     id_bold INT,
     id_italic INT
 );
@@ -392,7 +399,7 @@ CREATE TABLE glossnote(
     testo VARCHAR(1000),
     id_para VARCHAR(100),
     id_xref VARCHAR(100),
-    id_list VARCHAR(100),
+    id_list INT,
     id_bold INT,
     id_italic INT
 );
@@ -428,17 +435,18 @@ CREATE TABLE para(
     testo VARCHAR(1000),
     id_xref VARCHAR(100),
     id_url VARCHAR(100),
-    id_list VARCHAR(100),
+    id_list INT,
     id_bold INT,
     id_italic INT
 );
 
 CREATE TABLE item(
-    id_item VARCHAR(100) NOT NULL PRIMARY KEY,
+    id_item INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    testo VARCHAR (10000),
     id_para VARCHAR(100),
     id_xref VARCHAR(100),
     id_url VARCHAR(100),
-    id_list VARCHAR(100),
+    id_list INT,
     id_bold INT,
     id_italic INT,
     id_selection VARCHAR(100)
@@ -459,8 +467,9 @@ CREATE TABLE assignment(
 );
 
 CREATE TABLE list(
-    id_list VARCHAR(100) NOT NULL PRIMARY KEY,
-    id_item VARCHAR(100)
+    id_list INT NOT NULL AUTO_INCREMENT,
+    id_item INT,
+    PRIMARY KEY (id_list)
 );
 
 CREATE TABLE example(
@@ -472,7 +481,7 @@ CREATE TABLE exampleterm(
     id_exampleterm VARCHAR(100) NOT NULL PRIMARY KEY,
     testo VARCHAR(1000),
     id_xref VARCHAR(100),
-    id_list VARCHAR(100),
+    id_list INT,
     id_bold INT,
     id_italic INT
 );
@@ -480,7 +489,7 @@ CREATE TABLE exampledef(
     id_exampledef VARCHAR(100) NOT NULL PRIMARY KEY,
     testo VARCHAR(1000),
     id_xref VARCHAR(100),
-    id_list VARCHAR(100),
+    id_list INT,
     id_bold INT,
     id_italic INT
 );
@@ -738,7 +747,7 @@ CREATE TABLE msainput(
 
 CREATE TABLE aeevaluator(
     id_aeevaluator VARCHAR(100) NOT NULL PRIMARY KEY,
-    id_list VARCHAR(100),
+    id_list INT,
     id_assignment VARCHAR(100),
     id_selection VARCHAR(100),
     id_xref VARCHAR(100),
@@ -747,7 +756,7 @@ CREATE TABLE aeevaluator(
 
 CREATE TABLE aedeveloper(
     id_aedeveloper VARCHAR(100) NOT NULL PRIMARY KEY,
-    id_list VARCHAR(100),
+    id_list INT,
     id_assignment VARCHAR(100),
     id_selection VARCHAR(100),
     id_xref VARCHAR(100),
@@ -756,7 +765,7 @@ CREATE TABLE aedeveloper(
 
 CREATE TABLE aecontent(
     id_aecontent VARCHAR(100) NOT NULL PRIMARY KEY,
-    id_list VARCHAR(100),
+    id_list INT,
     id_assignment VARCHAR(100),
     id_selection VARCHAR(100),
     id_xref VARCHAR(100)
@@ -927,8 +936,7 @@ ADD FOREIGN KEY (id_xref) REFERENCES xref(id_xref) ON UPDATE CASCADE ON DELETE C
 ALTER TABLE assignment
 ADD FOREIGN KEY (id_italic) REFERENCES italic(id_italic) ON UPDATE CASCADE ON DELETE CASCADE;
 
-ALTER TABLE list
-ADD FOREIGN KEY (id_item) REFERENCES item(id_item) ON UPDATE CASCADE ON DELETE CASCADE;
+
 
 ALTER TABLE example
 ADD FOREIGN KEY (id_exampleterm) REFERENCES exampleterm(id_exampleterm) ON UPDATE CASCADE ON DELETE CASCADE;
@@ -1232,5 +1240,18 @@ ALTER TABLE afamily
 ADD FOREIGN KEY (id_aflevellingcriteria) REFERENCES aflevellingcriteria(id_aflevellingcriteria) ON UPDATE CASCADE ON DELETE CASCADE;
 ALTER TABLE afamily
 ADD FOREIGN KEY (id_afapplicationnotes) REFERENCES afapplicationnotes(id_afapplicationnotes) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+DROP TABLE IF EXISTS employee;
+
+CREATE TABLE employee (
+    id VARCHAR(10) PRIMARY KEY,
+    firstname VARCHAR(50),
+    lastname VARCHAR(50),
+    title VARCHAR(50),
+    division VARCHAR(50),
+    building INT,
+    room INT
+);
 
 

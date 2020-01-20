@@ -1,12 +1,10 @@
 package com.unicampania.xmltodb.model.parasequence;
 
 import lombok.Getter;
-import org.springframework.batch.item.database.ItemPreparedStatementSetter;
 
+import javax.xml.bind.Unmarshaller;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 @XmlRootElement(name = "xref")
 public class Xref {
@@ -25,4 +23,8 @@ public class Xref {
         return  id_xref.toUpperCase().replaceAll ("\r\n", " ").trim() + " " ;
     }
 
+
+    /*void afterUnmarshal(Unmarshaller unmarshaller, Object parent) {
+        System.out.println("After Unmarshaller Callback");
+    }*/
 }

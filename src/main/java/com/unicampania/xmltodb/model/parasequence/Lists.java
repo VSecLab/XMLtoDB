@@ -5,14 +5,16 @@ import lombok.Getter;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
+@XmlRootElement(name = "list")
 public class Lists {
 
     @Getter
     @XmlElement
-    private String id_list = new String();
+    private int id_list;
 
     @Getter
     @XmlAttribute(name = "type")
