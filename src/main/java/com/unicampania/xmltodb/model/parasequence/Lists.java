@@ -13,8 +13,7 @@ import java.util.List;
 public class Lists {
 
     @Getter
-    @XmlElement
-    private int id_list;
+    private String id_list;
 
     @Getter
     @XmlAttribute(name = "type")

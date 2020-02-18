@@ -45,9 +45,7 @@ public class Item {
     @XmlElement(name = "italic")
     private List<Italic> italics = new ArrayList<>();
 
-    @Getter
-    @XmlElement(name = "selection")
-    private List<Selection> selections = new ArrayList<>();
+
 
     private List<String> boldItem = new ArrayList<>();
 

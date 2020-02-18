@@ -1,6 +1,7 @@
 package com.unicampania.xmltodb.model.assurance_paradigm;
 
 import com.unicampania.xmltodb.model.assurance_family.AFamily;
+import com.unicampania.xmltodb.model.parasequence.Xref;
 import lombok.Getter;
 
 import javax.xml.bind.annotation.XmlAttribute;
@@ -30,15 +31,15 @@ public class AClass {
 
     @Getter
     @XmlElement(name = "ma-introduction")
-    private MaIntroduction maIntroduction;
+    private MaIntroduction maIntroduction = new MaIntroduction();
 
     @Getter
     @XmlElement(name = "ac-application-notes")
-    private AcApplicationNotes acApplicationNotes;
+    private AcApplicationNotes acApplicationNotes = new AcApplicationNotes();
 
     @Getter
     @XmlElement(name = "ma-objectives")
-    private MaObjectives maObjectives;
+    private MaObjectives maObjectives = new MaObjectives();
 
     @Getter
     @XmlElement(name = "ma-application-notes")
@@ -47,5 +48,6 @@ public class AClass {
     @Getter
     @XmlElement(name = "a-family")
     private List<AFamily> aFamilies = new ArrayList<>();
+
 
 }

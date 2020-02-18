@@ -1,15 +1,19 @@
 package com.unicampania.xmltodb.model.parasequence;
 
 
-import com.unicampania.xmltodb.model.parasequence.table.Table;
+
 import lombok.Getter;
 
 
 import javax.xml.bind.annotation.XmlAttribute;
+
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlMixed;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 
+@XmlRootElement(name = "subclause")
 public class Subclause {
 
     @Getter
@@ -20,38 +24,34 @@ public class Subclause {
     @XmlAttribute(name = "title")
     private String title= new String();
 
+    @Getter
+    @XmlElement(name = "xref")
+    private List<Xref> xrefList = new ArrayList<>();
 
     @Getter
-    @XmlElement(name = "subclause")
-    private List<Subclause> subclauses = new ArrayList<>();
+    @XmlMixed
+    private List<String> testo = new ArrayList<>();
 
-    @Getter
-    @XmlElement(name = "para")
-    private List<Para> paras = new ArrayList<>();
+    public List<String> getCombo() {
+        return merge(testo, xrefList);
+    }
 
-    @Getter
-    @XmlElement(name = "figure")
-    private List<Figure> figures = new ArrayList<>();
+    public static List<String> merge(List<String> a, List<Xref> b) {
 
-    @Getter
-    @XmlElement(name = "acronym")
-    private List<Acronym> acronyms = new ArrayList<>();
+        List<String> res = new ArrayList<>();
+        if(a.size() == 1 ){
+            res.add(a.get(0));
+            return  res ;
+        }
+        for (int i = 0; i < a.size(); i++) {
 
-    @Getter
-    @XmlElement(name = "biblioentry")
-    private List<Biblioentry> biblioentries = new ArrayList<>();
-
-    @Getter
-    @XmlElement(name = "glossentry")
-    private List<Glossentry> glossentries = new ArrayList<>();
-
-    @Getter
-    @XmlElement(name = "table")
-    private List<Table> tables = new ArrayList<>();
-
-    @Getter
-    @XmlElement(name ="example")  //non ho capito se è attribute o element
-    private List<Example> examples = new ArrayList<>();
+            res.add(a.get(i).replaceAll("\r\n", " ").trim());
+            if (b.size() != i && b.size() != 0 && b.size() > i) {
+                res.add(b.get(i).toString().replace("[", "").replace("]", "").replaceAll("\r\n", " ").trim());
+            }
+        }
+        return res;
+    }
 
 }
 
